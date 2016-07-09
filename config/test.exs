@@ -14,6 +14,6 @@ config :app, App.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "app_test",
-  hostname: "localhost",
+  database: "phoenix_twitter_test",
+  hostname: "172.17.0.2",
   pool: Ecto.Adapters.SQL.Sandbox

@@ -11,8 +11,9 @@ defmodule App.SignupController do
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params) |> User.with_password_hash
     case Repo.insert(changeset) do
-      {:ok, _user} ->
+      {:ok, user} ->
         conn
+        |> put_session(:id, user.id)
         |> put_flash(:info, "Successfully created user account.")
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->

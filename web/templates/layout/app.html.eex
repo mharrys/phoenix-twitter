@@ -16,7 +16,13 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li><a href="<%= signup_path(@conn, :index) %>">Signup</a></li>
+            <li><a href="<%= page_path(@conn, :index) %>">Home</a></li>
+            <%= if current_user(@conn) do %>
+              <li><a href="<%= logout_path(@conn, :index) %>">Logout</a></li>
+            <% else %>
+              <li><a href="<%= signup_path(@conn, :index) %>">Signup</a></li>
+              <li><a href="<%= login_path(@conn, :index) %>">Login</a></li>
+            <% end %>
           </ul>
         </nav>
         <span class="logo"></span>

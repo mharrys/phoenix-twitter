@@ -20,6 +20,11 @@ defmodule App.Router do
 
     get  "/signup", SignupController, :index
     post "/signup", SignupController, :create
+
+    get  "/login", LoginController, :index
+    post "/login", LoginController, :login
+
+    get "/logout", LogoutController, :index
   end
 
   # Other scopes may use custom stacks.

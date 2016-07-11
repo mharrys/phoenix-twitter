@@ -35,8 +35,9 @@ defmodule App.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_app_key",
-    signing_salt: "AbKYjYGs"
+    key: "_phoenix_twitter_key",
+    signing_salt: "AbKYjYGs",
+    encryption_salt: "2NavwUuz"
 
   plug App.Router
 end

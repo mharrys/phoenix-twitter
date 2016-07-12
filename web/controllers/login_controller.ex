@@ -1,6 +1,10 @@
 defmodule App.LoginController do
   use App.Web, :controller
 
+  import App.Authenticator
+
+  plug :redirect_authenticated
+
   def index(conn, _params) do
     render conn, "index.html"
   end

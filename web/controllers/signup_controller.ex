@@ -1,6 +1,10 @@
 defmodule App.SignupController do
   use App.Web, :controller
 
+  import App.Authenticator
+
+  plug :redirect_authenticated
+
   def index(conn, _params) do
     changeset = User.changeset(%User{})
     render conn, "index.html", changeset: changeset

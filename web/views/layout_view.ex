@@ -1,13 +1,9 @@
 defmodule App.LayoutView do
   use App.Web, :view
 
-  import Plug.Conn, only: [get_session: 2]
-
-  alias App.User
-  alias App.Repo
+  import App.Authenticator, only: [get_user: 1]
 
   def current_user(conn) do
-    id = get_session(conn, :id)
-    if id, do: Repo.get(User, id)
+    get_user conn
   end
 end

@@ -36,6 +36,8 @@ defmodule App.Web do
 
       import App.Router.Helpers
       import App.Gettext
+
+      alias App.User
     end
   end
 

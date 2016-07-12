@@ -1,8 +1,6 @@
 defmodule App.SignupController do
   use App.Web, :controller
 
-  alias App.User
-
   def index(conn, _params) do
     changeset = User.changeset(%User{})
     render conn, "index.html", changeset: changeset

@@ -1,8 +1,6 @@
 defmodule App.LoginController do
   use App.Web, :controller
 
-  alias App.User
-
   def index(conn, _params) do
     render conn, "index.html"
   end

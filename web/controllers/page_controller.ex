@@ -2,6 +2,8 @@ defmodule App.PageController do
   use App.Web, :controller
 
   def index(conn, _params) do
-    render conn, "index.html"
+    tweets = Repo.all from t in Tweet, order_by: [desc: t.inserted_at]
+    users = Repo.all from t in User, order_by: [desc: t.inserted_at]
+    render conn, "index.html", tweets: tweets, users: users
   end
 end

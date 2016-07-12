@@ -38,6 +38,7 @@ defmodule App.Web do
       import App.Gettext
 
       alias App.User
+      alias App.Tweet
     end
   end
 

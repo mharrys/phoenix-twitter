@@ -15,6 +15,6 @@ defmodule App.Tweet do
     struct
     |> cast(params, [:text])
     |> validate_required([:text])
-    |> validate_length(:field, min: 1, max: 140)
+    |> validate_length(:text, min: 1, max: 140)
   end
 end

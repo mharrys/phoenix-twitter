@@ -7,6 +7,7 @@ defmodule App.User do
     field :password_hash, :string
     field :name, :string
     field :email, :string
+    has_many :tweets, App.Tweet
 
     timestamps()
   end

@@ -22,7 +22,10 @@ defmodule App.ProfileController do
         |> put_status(:not_found)
         |> render(ErrorView, "404.html")
       user ->
-        authenticated = App.Authenticator.get_user(conn)
+        authenticated = case App.Authenticator.find_user(conn) do
+          {:ok, user} -> user
+          :error -> nil
+        end
         if authenticated == nil || user.id != authenticated.id do
           conn
           |> put_flash(:error, "You are not allowed to post.")

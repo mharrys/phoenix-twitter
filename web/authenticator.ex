@@ -7,11 +7,11 @@ defmodule App.Authenticator do
   alias App.User
 
   @doc """
-  Retrieve authenticated user from session, nil if not authenticated.
+  Find authenticated user from session.
   """
-  def get_user(conn) do
+  def find_user(conn) do
     id = get_session(conn, :id)
-    if id, do: Repo.get(User, id)
+    if id, do: {:ok, Repo.get(User, id)}, else: :error
   end
 
   @doc """

@@ -1,9 +1,12 @@
 defmodule App.LayoutView do
   use App.Web, :view
 
-  import App.Authenticator, only: [get_user: 1]
+  import App.Authenticator, only: [find_user: 1]
 
   def current_user(conn) do
-    get_user conn
+    case find_user conn do
+      {:ok, user} -> user
+      :error -> nil
+    end
   end
 end

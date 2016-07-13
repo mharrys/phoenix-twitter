@@ -28,6 +28,8 @@ defmodule App.Router do
 
     get  "/profile", ProfileController, :index
     post "/profile", ProfileController, :create
+
+    get "/users/:login", UserController, :show
   end
 
   # Other scopes may use custom stacks.

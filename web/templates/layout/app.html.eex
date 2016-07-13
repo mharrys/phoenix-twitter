@@ -18,6 +18,7 @@
           <ul class="nav nav-pills">
             <li><a href="<%= page_path(@conn, :index) %>">Home</a></li>
             <%= if current_user(@conn) do %>
+              <li><a href="<%= profile_path(@conn, :index) %>">Profile</a></li>
               <li><a href="<%= logout_path(@conn, :index) %>">Logout</a></li>
             <% else %>
               <li><a href="<%= signup_path(@conn, :index) %>">Signup</a></li>

@@ -26,8 +26,8 @@ defmodule App.Router do
 
     get "/logout", LogoutController, :index
 
-    get  "/profile/:login", ProfileController, :index
-    post "/profile/:login", ProfileController, :tweet
+    get  "/profile", ProfileController, :index
+    post "/profile", ProfileController, :tweet
   end
 
   # Other scopes may use custom stacks.

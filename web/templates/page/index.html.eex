@@ -14,7 +14,7 @@
   <div class="col-lg-6">
     <h4>Latest Users</h4>
     <%= for user <- @users do %>
-      <p><a href="<%= profile_path(@conn, :index, user.login) %>"><%= user.name %></a></p>
+      <p><a href="<%= profile_path(@conn, :index) %>"><%= user.name %></a></p>
     <% end %>
   </div>
 </div>

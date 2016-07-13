@@ -12,7 +12,7 @@ defmodule App.ProfileController do
     render conn, "index.html", user: user, changeset: changeset
   end
 
-  def tweet(conn, %{"tweet" => tweet_params}) do
+  def create(conn, %{"tweet" => tweet_params}) do
     user = conn.assigns[:user]
     changeset = Tweet.changeset(%Tweet{user_id: user.id}, tweet_params)
     case Repo.insert(changeset) do

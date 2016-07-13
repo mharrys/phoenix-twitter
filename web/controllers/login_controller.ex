@@ -21,7 +21,7 @@ defmodule App.LoginController do
         conn
         |> put_session(:id, user.id)
         |> put_flash(:info, "Successfully logged in.")
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: profile_path(conn, :index))
     end
   end
 

@@ -15,7 +15,7 @@
     <div class="container">
       <header class="header">
         <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
+          <ul class="nav nav-pills">
             <li><a href="<%= page_path(@conn, :index) %>">Home</a></li>
             <%= if current_user(@conn) do %>
               <li><a href="<%= logout_path(@conn, :index) %>">Logout</a></li>
@@ -25,7 +25,6 @@
             <% end %>
           </ul>
         </nav>
-        <span class="logo"></span>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

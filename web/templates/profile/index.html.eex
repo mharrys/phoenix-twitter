@@ -1,4 +1,4 @@
-<h2>Welcome to profile: <%= @user.name %></h2>
+<h2><%= @user.name %></h2>
 
 <%= form_for @changeset, profile_path(@conn, :tweet), fn f -> %>
   <%= if @changeset.action do %>
@@ -8,7 +8,6 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :text, class: "control-label" %>
     <%= text_input f, :text, class: "form-control" %>
     <%= error_tag f, :text %>
   </div>

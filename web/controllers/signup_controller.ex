@@ -1,6 +1,8 @@
 defmodule App.SignupController do
   use App.Web, :controller
 
+  alias App.User
+
   import App.Authenticator
 
   plug :redirect_authenticated

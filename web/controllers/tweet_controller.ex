@@ -1,6 +1,9 @@
 defmodule App.TweetController do
   use App.Web, :controller
 
+  alias App.Tweet
+  alias App.User
+
   import App.Authenticator, [:find_user]
   import Plug.Conn
 

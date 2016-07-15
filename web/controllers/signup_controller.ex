@@ -3,9 +3,7 @@ defmodule App.SignupController do
 
   alias App.User
 
-  import App.Authenticator, only: [redirect_authenticated: 2]
-
-  plug :redirect_authenticated
+  plug App.RedirectAuthenticated
 
   def index(conn, _params) do
     changeset = User.changeset(%User{})
@@ -17,7 +15,7 @@ defmodule App.SignupController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
-        |> put_session(:user_id, user.id)
+        |> put_session(:current_user, %{id: user.id, login: user.login, name: user.name})
         |> put_flash(:info, "Successfully created user account.")
         |> redirect(to: user_tweet_path(conn, :index, user.id))
       {:error, changeset} ->

@@ -52,6 +52,10 @@ defmodule App.Web do
       import App.Router.Helpers
       import App.ErrorHelpers
       import App.Gettext
+
+      def current_user(conn) do
+        Plug.Conn.get_session(conn, :current_user)
+      end
     end
   end
 

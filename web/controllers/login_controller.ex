@@ -1,9 +1,9 @@
 defmodule App.LoginController do
   use App.Web, :controller
 
-  import App.Authenticator, only: [authenticate: 2, redirect_authenticated: 2]
+  alias App.User
 
-  plug :redirect_authenticated
+  plug App.RedirectAuthenticated
 
   def index(conn, _params) do
     render conn, "index.html"
@@ -13,13 +13,22 @@ defmodule App.LoginController do
     case authenticate(params["login"], params["password"]) do
       {:ok, user} ->
         conn
-        |> put_session(:user_id, user.id)
+        |> put_session(:current_user, %{id: user.id, login: user.login, name: user.name})
         |> put_flash(:info, "Successfully logged in.")
         |> redirect(to: user_tweet_path(conn, :index, user.id))
       :error ->
         conn
         |> put_flash(:error, "Wrong login or password.")
         |> render("index.html")
+    end
+  end
+
+  defp authenticate(login, password) do
+    case Repo.get_by(User, login: login) do
+      nil  ->
+        :error
+      user ->
+        if User.validate_password(password, user.password_hash), do: {:ok, user}
     end
   end
 end

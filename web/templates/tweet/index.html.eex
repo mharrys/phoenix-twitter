@@ -1,7 +1,7 @@
 <div class="row">
   <h2><%= @user.name %></h2>
 
-  <%= if @current_user && @current_user.id == @user.id do %>
+  <%= if current_user(@conn) && current_user(@conn).id == @user.id do %>
     <%= form_for @changeset, user_tweet_path(@conn, :create, @user.id), fn f -> %>
       <%= if @changeset.action do %>
         <div class="alert alert-danger">

@@ -7,6 +7,20 @@ defmodule App.Authenticator do
   alias App.User
 
   @doc """
+  Authenticate login credentials.
+  """
+  def authenticate(login, password) do
+    case Repo.get_by(User, login: login) do
+      nil  ->
+        :error
+      user ->
+        if User.validate_password(password, user.password_hash) do
+          {:ok, user}
+        end
+    end
+  end
+
+  @doc """
   Find authenticated user from session.
   """
   def find_user(conn) do

@@ -1,14 +1,23 @@
 defmodule App.UserController do
   use App.Web, :controller
 
-  def show(conn, %{"login" => login}) do
+  import Plug.Conn
+
+  plug :set_user
+
+  def show(conn, _params) do
+    user = conn.assigns[:user]
+    render conn, "index.html", user: user
+  end
+
+  defp set_user(%Plug.Conn{params: %{"login" => login}} = conn, _default) do
     case Repo.get_by(User, login: login) do
       nil ->
         conn
         |> put_status(:not_found)
         |> render(App.ErrorView, "404.html")
       user ->
-        render conn, "index.html", user: Repo.preload(user, [:tweets])
+        assign conn, :user, user |> Repo.preload([:tweets])
     end
   end
 end

@@ -17,7 +17,7 @@ defmodule App.SignupController do
         conn
         |> put_session(:id, user.id)
         |> put_flash(:info, "Successfully created user account.")
-        |> redirect(to: profile_path(conn, :index))
+        |> redirect(to: user_tweet_path(conn, :index, user.id))
       {:error, changeset} ->
         render conn, "index.html", changeset: changeset
     end

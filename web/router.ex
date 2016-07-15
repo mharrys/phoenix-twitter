@@ -26,10 +26,9 @@ defmodule App.Router do
 
     get "/logout", LogoutController, :index
 
-    get  "/profile", ProfileController, :index
-    post "/profile", ProfileController, :create
-
-    get "/users/:login", UserController, :show
+    resources "/users", UserController, only: [:index] do
+      resources "/tweets", TweetController, only: [:index, :create]
+    end
   end
 
   # Other scopes may use custom stacks.

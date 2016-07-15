@@ -1,5 +1,6 @@
-<h2><%= @user.name %></h2>
-
-<%= for tweet <- @user.tweets do %>
-  <p><%= tweet.text %></p>
-<% end %>
+<div class="row">
+  <h2>Users</h2>
+  <%= for user <- @users do %>
+    <p><a href="<%= user_tweet_path(@conn, :index, user.id) %>"><%= user.name %></a></p>
+  <% end %>
+</div>

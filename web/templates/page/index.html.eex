@@ -2,7 +2,7 @@
   <div class="col-lg-6">
     <h4>Latest Tweets</h4>
     <%= for tweet <- @tweets do %>
-      <p><%= tweet.text %></p>
+      <%= render App.SharedView, "tweet.html", tweet: tweet %>
     <% end %>
   </div>
 

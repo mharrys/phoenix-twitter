@@ -2,25 +2,11 @@
   <h2><%= @user.name %></h2>
 
   <%= if current_user(@conn) && current_user(@conn).id == @user.id do %>
-    <%= form_for @changeset, user_tweet_path(@conn, :create, @user.id), fn f -> %>
-      <%= if @changeset.action do %>
-        <div class="alert alert-danger">
-          <p><%= gettext "Oops, something went wrong! Please check the errors below." %></p>
-        </div>
-      <% end %>
-
-      <div class="form-group">
-        <%= text_input f, :text, class: "form-control" %>
-        <%= error_tag f, :text %>
-      </div>
-
-      <div class="form-group">
-        <%= submit "Tweet", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+    <%= render "form.html", changeset: @changeset,
+                            action: user_tweet_path(@conn, :create, @user.id) %>
   <% end %>
 
   <%= for tweet <- @user.tweets do %>
-    <p><%= tweet.text %></p>
+    <%= render App.SharedView, "tweet.html", tweet: tweet %>
   <% end %>
 </div>

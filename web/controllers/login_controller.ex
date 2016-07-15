@@ -13,7 +13,7 @@ defmodule App.LoginController do
     case authenticate(params["login"], params["password"]) do
       {:ok, user} ->
         conn
-        |> put_session(:id, user.id)
+        |> put_session(:user_id, user.id)
         |> put_flash(:info, "Successfully logged in.")
         |> redirect(to: user_tweet_path(conn, :index, user.id))
       :error ->

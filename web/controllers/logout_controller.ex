@@ -3,7 +3,7 @@ defmodule App.LogoutController do
 
   def index(conn, _params) do
     conn
-    |> delete_session(:id)
+    |> delete_session(:user_id)
     |> redirect(to: page_path(conn, :index))
   end
 end

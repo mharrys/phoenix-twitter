@@ -3,7 +3,7 @@ defmodule App.SignupController do
 
   alias App.User
 
-  import App.Authenticator
+  import App.Authenticator, only: [redirect_authenticated: 2]
 
   plug :redirect_authenticated
 

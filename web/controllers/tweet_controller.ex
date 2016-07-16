@@ -1,6 +1,7 @@
 defmodule App.TweetController do
   use App.Web, :controller
 
+  alias App.Follower
   alias App.Tweet
   alias App.User
 
@@ -13,7 +14,13 @@ defmodule App.TweetController do
   def index(conn, _params) do
     user = conn.assigns[:user]
     changeset = Tweet.changeset(%Tweet{})
-    render conn, "index.html", user: user, changeset: changeset
+    current_user = get_session(conn, :current_user)
+    follower = if current_user do
+      query = from f in Follower, where: f.user_id == ^user.id and
+                                         f.follower_id == ^current_user.id
+      Repo.one(query)
+    end
+    render conn, "index.html", user: user, changeset: changeset, follower: follower
   end
 
   def create(conn, %{"tweet" => tweet_params}) do
@@ -37,7 +44,7 @@ defmodule App.TweetController do
         |> put_status(:not_found)
         |> render(App.ErrorView, "404.html")
       user ->
-        assign conn, :user, user |> Repo.preload([:tweets])
+        assign conn, :user, user |> Repo.preload([:tweets, :followers, :following])
     end
   end
 

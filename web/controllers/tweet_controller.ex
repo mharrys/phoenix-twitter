@@ -3,11 +3,8 @@ defmodule App.TweetController do
 
   alias App.Follower
   alias App.Tweet
-  alias App.User
 
-  import Plug.Conn
-
-  plug :set_user
+  plug App.SetUser, [:tweets, :followers, :following]
   plug :is_authenticated? when action in [:create]
   plug :is_authorized? when action in [:create]
 
@@ -34,17 +31,6 @@ defmodule App.TweetController do
       {:error, changeset} ->
         conn
         |> render("index.html", user: user, changeset: changeset)
-    end
-  end
-
-  defp set_user(%Plug.Conn{params: %{"user_id" => user_id}} = conn, _default) do
-    case Repo.get(User, user_id) do
-      nil ->
-        conn
-        |> put_status(:not_found)
-        |> render(App.ErrorView, "404.html")
-      user ->
-        assign conn, :user, user |> Repo.preload([:tweets, :followers, :following])
     end
   end
 

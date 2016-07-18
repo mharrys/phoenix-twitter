@@ -3,6 +3,21 @@ defmodule App.FollowerController do
 
   alias App.Follower
 
+  plug App.SetUser, [:followers] when action in [:followers]
+  plug App.SetUser, [:following] when action in [:following]
+
+  def followers(conn, %{"user_id" => user_id}) do
+    user = conn.assigns[:user]
+    followers = user.followers |> Repo.preload(:follower)
+    render conn, "followers.html", user: user, followers: followers
+  end
+
+  def following(conn, %{"user_id" => user_id}) do
+    user = conn.assigns[:user]
+    following = user.following |> Repo.preload(:user)
+    render conn, "following.html", user: user, following: following
+  end
+
   def follow(conn, %{"user_id" => user_id}) do
     {user_id, _} = Integer.parse(user_id)
     follower_id = get_session(conn, :current_user).id

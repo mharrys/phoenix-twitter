@@ -29,6 +29,8 @@ defmodule App.Router do
     resources "/users", UserController, only: [:index] do
       resources "/tweets", TweetController, only: [:index, :create]
 
+      get "/followers", FollowerController, :followers
+      get "/following", FollowerController, :following
       get "/follow", FollowerController, :follow
       get "/unfollow/:id", FollowerController, :unfollow
     end

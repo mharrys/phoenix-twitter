@@ -1,0 +1,11 @@
+<div class="row">
+  <h2><%= @user.name %>'s followers:</h2>
+
+  <%= for f <- @followers do %>
+    <p>
+      <a href="<%= user_tweet_path(@conn, :index, f.follower.id) %>">
+        <%= f.follower.name %>
+      </a>
+    </p>
+  <% end %>
+</div>

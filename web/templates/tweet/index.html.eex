@@ -1,8 +1,16 @@
 <div class="row">
   <h2><%= @user.name %></h2>
 
-  <h4>Followers: <%= length(@user.followers) %></h4>
-  <h4>Following: <%= length(@user.following) %></h4>
+  <h4>
+    Followers: <a href="<%= user_follower_path(@conn, :followers, @user.id) %>">
+                 <%= length(@user.followers) %>
+               </a>
+  </h4>
+  <h4>
+    Following: <a href="<%= user_follower_path(@conn, :following, @user.id) %>">
+                 <%= length(@user.following) %>
+               </a>
+  </h4>
 
   <%= if !user_profile(@conn) do %>
     <%= if @follower do %>

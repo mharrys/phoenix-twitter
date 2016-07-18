@@ -18,6 +18,7 @@ defmodule App.SetUser do
         conn
         |> put_status(:not_found)
         |> render(App.ErrorView, "404.html")
+        |> halt
       user ->
         assign conn, :user, user |> Repo.preload(default)
     end

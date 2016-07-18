@@ -5,7 +5,7 @@ defmodule App.TweetController do
   alias App.Tweet
 
   plug App.SetUser, [:tweets, :followers, :following]
-  plug :is_authenticated? when action in [:create]
+  plug App.LoginRequired when action in [:create]
   plug :is_authorized? when action in [:create]
 
   def index(conn, _params) do
@@ -31,18 +31,6 @@ defmodule App.TweetController do
       {:error, changeset} ->
         conn
         |> render("index.html", user: user, changeset: changeset)
-    end
-  end
-
-  defp is_authenticated?(conn, _default) do
-    case get_session(conn, :current_user) do
-      nil ->
-        conn
-        |> put_flash(:info, "You must be logged in.")
-        |> redirect(to: login_path(conn, :index))
-        |> halt
-      current_user ->
-        assign conn, :current_user, current_user
     end
   end
 

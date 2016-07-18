@@ -8,5 +8,7 @@ defmodule App.Repo.Migrations.CreateFollower do
 
       timestamps()
     end
+    create unique_index(:followers, [:user_id, :follower_id])
+
   end
 end

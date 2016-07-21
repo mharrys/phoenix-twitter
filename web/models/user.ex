@@ -4,6 +4,7 @@ defmodule App.User do
   schema "users" do
     field :login, :string
     field :password, :string, virtual: true
+    field :password_confirmation, :string, virtual: true
     field :password_hash, :string
     field :name, :string
     field :email, :string
@@ -23,6 +24,7 @@ defmodule App.User do
     |> validate_required([:login, :password, :name])
     |> validate_length(:login, max: 15)
     |> validate_length(:name, max: 20)
+    |> validate_confirmation(:password)
     |> unique_constraint(:login)
   end
 

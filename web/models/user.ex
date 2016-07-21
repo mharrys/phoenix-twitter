@@ -24,7 +24,6 @@ defmodule App.User do
     |> validate_length(:login, max: 15)
     |> validate_length(:name, max: 20)
     |> unique_constraint(:login)
-    |> unique_constraint(:email)
   end
 
   @doc """

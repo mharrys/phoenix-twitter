@@ -28,7 +28,11 @@ defmodule App.LoginController do
       nil  ->
         :error
       user ->
-        if User.validate_password(password, user.password_hash), do: {:ok, user}
+        if User.validate_password(password, user.password_hash) do
+          {:ok, user}
+        else
+          :error
+        end
     end
   end
 end

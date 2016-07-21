@@ -1,0 +1,4 @@
+<div class="row">
+  <h2>Edit user</h2>
+  <%= render "form.html", changeset: @changeset, action: user_path(@conn, :update, @user) %>
+</div>

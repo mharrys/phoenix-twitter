@@ -15,7 +15,7 @@ defmodule App.LoginController do
         conn
         |> put_session(:current_user, %{id: user.id, login: user.login, name: user.name})
         |> put_flash(:info, "Successfully logged in.")
-        |> redirect(to: user_tweet_path(conn, :index, user.id))
+        |> redirect(to: user_tweet_path(conn, :index, user))
       :error ->
         conn
         |> put_flash(:error, "Wrong login or password.")

@@ -1,5 +1,4 @@
 <div class="row">
   <h2>Join Phoenix-Twitter today!</h2>
-  <%= render "form.html", changeset: @changeset,
-                          action: signup_path(@conn, :create) %>
+  <%= render "form.html", changeset: @changeset, action: signup_path(@conn, :create) %>
 </div>

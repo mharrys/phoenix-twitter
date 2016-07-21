@@ -27,7 +27,7 @@ defmodule App.TweetController do
       {:ok, _tweet} ->
         conn
         |> put_flash(:info, "Successfully posted new tweet.")
-        |> redirect(to: user_tweet_path(conn, :index, user.id))
+        |> redirect(to: user_tweet_path(conn, :index, user))
       {:error, changeset} ->
         conn
         |> render("index.html", user: user, changeset: changeset)

@@ -26,7 +26,7 @@ defmodule App.Router do
 
     get "/logout", LogoutController, :index
 
-    resources "/users", UserController, only: [:index] do
+    resources "/users", UserController, only: [:index, :edit, :update] do
       resources "/tweets", TweetController, only: [:index, :create]
 
       get "/followers", FollowerController, :followers

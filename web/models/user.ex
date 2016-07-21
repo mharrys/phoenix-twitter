@@ -5,6 +5,8 @@ defmodule App.User do
     field :login, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
+    field :new_password, :string, virtual: true
+    field :new_password_confirmation, :string, virtual: true
     field :password_hash, :string
     field :name, :string
     field :email, :string
@@ -20,11 +22,12 @@ defmodule App.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:login, :password, :password_hash, :name, :email])
+    |> cast(params, [:login, :password, :password_hash, :new_password, :name, :email])
     |> validate_required([:login, :password, :name])
     |> validate_length(:login, max: 15)
     |> validate_length(:name, max: 20)
     |> validate_confirmation(:password)
+    |> validate_confirmation(:new_password)
     |> unique_constraint(:login)
   end
 
@@ -34,7 +37,7 @@ defmodule App.User do
   It will automatically generate a salt before hashing the password.
   """
   def with_password_hash(changeset) do
-    password = changeset.params["password"]
+    password = Ecto.Changeset.get_change(changeset, :password)
     hash = Comeonin.Bcrypt.hashpwsalt(password)
     Ecto.Changeset.put_change(changeset, :password_hash, hash)
   end

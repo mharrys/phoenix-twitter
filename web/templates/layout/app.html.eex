@@ -20,7 +20,7 @@
             <li><a href="<%= user_path(@conn, :index) %>">Users</a></li>
             <%= if current_user(@conn) do %>
               <li><a href="<%= user_tweet_path(@conn, :index, current_user(@conn).id) %>">Profile</a></li>
-              <li><a href="<%= user_path(@conn, :edit, current_user(@conn).id) %>">Setting</a></li>
+              <li><a href="<%= user_path(@conn, :edit, current_user(@conn).id) %>">Settings</a></li>
               <li><a href="<%= logout_path(@conn, :index) %>">Logout</a></li>
             <% else %>
               <li><a href="<%= signup_path(@conn, :index) %>">Signup</a></li>

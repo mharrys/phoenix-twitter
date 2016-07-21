@@ -2,6 +2,9 @@
   <h2><%= @user.name %></h2>
 
   <h4>
+    Tweets: <%= length(@user.tweets) %>
+  </h4>
+  <h4>
     Followers: <a href="<%= user_follower_path(@conn, :followers, @user.id) %>">
                  <%= length(@user.followers) %>
                </a>

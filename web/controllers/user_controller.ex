@@ -23,10 +23,8 @@ defmodule App.UserController do
     # authorize user update
     password = get_change(changeset, :password)
     unless User.validate_password(password, user.password_hash) do
-      changeset =
-        %{changeset | action: :update }
-        |> add_error(:password, "wrong password")
-      render conn, "edit.html", user: user, changeset: changeset
+      render conn, "edit.html", user: user, changeset: %{changeset | action: :update }
+                                                       |> add_error(:password, "wrong password")
     end
 
     # set new password? (optional)

@@ -7,6 +7,7 @@ defmodule App.Follower do
 
     timestamps()
   end
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """

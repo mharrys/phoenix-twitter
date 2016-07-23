@@ -33,6 +33,13 @@ defmodule App.Router do
       get "/following", FollowerController, :following
       get "/follow", FollowerController, :follow
       get "/unfollow/:id", FollowerController, :unfollow
+
+      get "/favorites", FavoriteController, :index
+    end
+
+    scope "/tweets/:id" do
+      post   "/favorite", FavoriteController, :create
+      delete "/favorite", FavoriteController, :delete
     end
   end
 

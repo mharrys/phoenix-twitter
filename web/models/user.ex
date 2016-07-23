@@ -13,6 +13,7 @@ defmodule App.User do
     has_many :tweets, App.Tweet
     has_many :followers, App.Follower, foreign_key: :user_id
     has_many :following, App.Follower, foreign_key: :follower_id
+    has_many :favorites, App.Favorite, foreign_key: :user_id
 
     timestamps()
   end

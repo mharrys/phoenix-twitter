@@ -1,21 +1,31 @@
 defmodule App.TweetController do
   use App.Web, :controller
 
+  alias App.Favorite
   alias App.Follower
   alias App.Tweet
 
-  plug App.SetUser, [:tweets, :followers, :following]
+  plug App.SetUser, [:followers, :following, :favorites] when action in [:index]
+  plug App.SetUser when action in [:create, :delete]
   plug App.LoginRequired when action in [:create]
   plug :is_authorized? when action in [:create]
 
-  def index(conn, _params) do
+  def index(conn, %{"user_id" => user_id}) do
     user = conn.assigns[:user]
     changeset = Tweet.changeset(%Tweet{})
     current_user = get_session(conn, :current_user)
     follower = if current_user do
-      query = from f in Follower, where: f.user_id == ^user.id and
-                                         f.follower_id == ^current_user.id
+      query = from f in Follower, where: f.user_id == ^user.id and f.follower_id == ^current_user.id
       Repo.one(query)
+    end
+    user = if current_user do
+      tweets = Repo.all Tweet
+      |> where([t], t.user_id == ^user_id)
+      |> join(:left, [t], f in Favorite, f.user_id == ^current_user.id and f.tweet_id == t.id)
+      |> select([t, f], %{t | favorite_id: f.id})
+      %{user | tweets: tweets}
+    else
+      user |> Repo.preload(:tweets)
     end
     render conn, "index.html", user: user, changeset: changeset, follower: follower
   end

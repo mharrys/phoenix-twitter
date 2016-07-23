@@ -14,6 +14,11 @@
                  <%= length(@user.following) %>
                </a>
   </h4>
+  <h4>
+    Favorites: <a href="<%= user_favorite_path(@conn, :index, @user.id) %>">
+                 <%= length(@user.favorites) %>
+               </a>
+  </h4>
 
   <%= if authenticated(@conn) && !user_profile(@conn) do %>
     <%= if @follower do %>
@@ -34,6 +39,6 @@
 
   <h4>Tweets</h4>
   <%= for tweet <- @user.tweets do %>
-    <%= render App.SharedView, "tweet.html", tweet: tweet %>
+    <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn %>
   <% end %>
 </div>

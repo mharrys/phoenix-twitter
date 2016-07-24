@@ -2,9 +2,9 @@
   <%= @tweet.text %>
   <%= if current_user(@conn) do %>
     <%= if @tweet.favorite_id do %>
-      <%= link("Unfavorite", to: favorite_path(@conn, :delete, @tweet.favorite_id), method: "delete") %>
+      <%= link("Unfavorite", to: tweet_favorite_path(@conn, :delete, @tweet.id), method: "delete") %>
     <% else %>
-      <%= link("Favorite", to: favorite_path(@conn, :create, @tweet.id), method: "create") %>
+      <%= link("Favorite", to: tweet_favorite_path(@conn, :create, @tweet.id), method: "create") %>
     <% end %>
   <% end %>
 </p>

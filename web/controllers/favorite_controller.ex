@@ -24,9 +24,9 @@ defmodule App.FavoriteController do
     render conn, "index.html", tweets: tweets
   end
 
-  def create(conn, %{"id" => id}) do
+  def create(conn, %{"tweet_id" => tweet_id}) do
     current_user = conn.assigns[:current_user]
-    tweet = Repo.get! Tweet, id
+    tweet = Repo.get! Tweet, tweet_id
     params = %{user_id: current_user.id, tweet_id: tweet.id}
     case Repo.insert(Favorite.changeset(%Favorite{}, params)) do
       {:ok, _favorite} ->
@@ -39,16 +39,12 @@ defmodule App.FavoriteController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"tweet_id" => tweet_id}) do
     current_user = conn.assigns[:current_user]
-    favorite = Repo.get! Favorite, id
-    if current_user.id === favorite.user_id do
-      Repo.delete!(favorite)
-      redirect conn, to: user_tweet_path(conn, :index, favorite.user_id)
-    else
-      conn
-      |> put_status(:unauthorized)
-      |> render(App.ErrorView, "401.html")
-    end
+    query = from f in Favorite,
+            where: f.tweet_id == ^tweet_id and f.user_id == ^current_user.id
+    favorite = Repo.one! query
+    Repo.delete! favorite
+    redirect conn, to: user_tweet_path(conn, :index, current_user.id)
   end
 end

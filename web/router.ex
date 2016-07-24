@@ -37,7 +37,7 @@ defmodule App.Router do
       get "/favorites", FavoriteController, :index
     end
 
-    scope "/tweets/:id" do
+    resources "/tweets", TweetController, only: [] do
       post   "/favorite", FavoriteController, :create
       delete "/favorite", FavoriteController, :delete
     end

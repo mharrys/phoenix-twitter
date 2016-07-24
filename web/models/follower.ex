@@ -1,9 +1,11 @@
 defmodule App.Follower do
   use App.Web, :model
 
+  alias App.User
+
   schema "followers" do
-    belongs_to :user, App.User
-    belongs_to :follower, App.User
+    belongs_to :user, User
+    belongs_to :follower, User
 
     timestamps()
   end

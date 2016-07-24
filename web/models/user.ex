@@ -10,6 +10,7 @@ defmodule App.User do
     field :password_hash, :string
     field :name, :string
     field :email, :string
+    field :follower_id, :integer, virtual: true
     has_many :tweets, App.Tweet
     has_many :followers, App.Follower, foreign_key: :user_id
     has_many :following, App.Follower, foreign_key: :follower_id

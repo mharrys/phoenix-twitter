@@ -21,7 +21,7 @@
   </h4>
 
   <%= if authenticated(@conn) && !user_profile(@conn) do %>
-    <%= if @follower do %>
+    <%= if @user.follower_id do %>
       <%= link("Unfollow", to: user_follower_path(@conn, :delete, @user.id), method: "delete") %>
     <% else %>
       <%= link("Follow", to: user_follower_path(@conn, :create, @user.id), method: "post") %>

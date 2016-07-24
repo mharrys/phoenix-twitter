@@ -14,14 +14,23 @@ defmodule App.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Repo.get!(User, id) |> Repo.preload([:followers, :following, :favorites])
-    changeset = Tweet.changeset(%Tweet{})
     current_user = get_session(conn, :current_user)
 
-    follower = if current_user do
-      query = from f in Follower,
-              where: f.user_id == ^user.id and f.follower_id == ^current_user.id
-      Repo.one(query)
+    query = User |> where([u], u.id == ^id)
+    query = if current_user do
+        query
+        |> join(:left, [u], f in Follower, f.user_id == ^id and f.follower_id == ^current_user.id)
+        |> select([u, f], %{u | follower_id: f.id})
+    else
+        query
+    end
+    user = Repo.one query |> preload([:followers, :following, :favorites])
+
+    unless user do
+      conn
+      |> put_status(:not_found)
+      |> render(App.ErrorView, "404.html")
+      |> halt
     end
 
     user = if current_user do
@@ -34,7 +43,8 @@ defmodule App.UserController do
       user |> Repo.preload(:tweets)
     end
 
-    render conn, "show.html", user: user, changeset: changeset, follower: follower
+    changeset = Tweet.changeset(%Tweet{})
+    render conn, "show.html", user: user, changeset: changeset
   end
 
   def edit(conn, %{"id" => id}) do

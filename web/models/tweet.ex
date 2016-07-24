@@ -5,7 +5,7 @@ defmodule App.Tweet do
     field :text, :string, size: 140
     field :favorite_id, :integer, virtual: true
     belongs_to :user, App.User
-    has_many :favorites_users, App.Favorite, foreign_key: :user_id
+    has_many :favorites, App.Favorite, foreign_key: :user_id
 
     timestamps()
   end

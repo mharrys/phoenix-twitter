@@ -3,12 +3,12 @@ defmodule App.FollowerController do
 
   alias App.Follower
 
+  plug App.LoginRequired when action in [:create, :delete]
   plug App.SetUser, [:followers] when action in [:followers]
   plug App.SetUser, [:following] when action in [:following]
-  plug App.LoginRequired when action in [:follow, :unfollow]
-  plug App.SetUser when action in [:follow, :unfollow]
-  plug :not_a_follower when action in [:follow]
-  plug :user_is_not_current_user when action in [:follow, :unfollow]
+  plug App.SetUser when action in [:create, :delete]
+  plug :not_following when action in [:create]
+  plug :not_current_user when action in [:create, :delete]
 
   def followers(conn, _param) do
     user = conn.assigns[:user]
@@ -22,7 +22,7 @@ defmodule App.FollowerController do
     render conn, "following.html", user: user, following: following
   end
 
-  def follow(conn, _param) do
+  def create(conn, _param) do
     user = conn.assigns[:user]
     current_user = conn.assigns[:current_user]
     follower = %Follower{user_id: user.id, follower_id: current_user.id}
@@ -31,26 +31,29 @@ defmodule App.FollowerController do
         redirect(conn, to: user_path(conn, :show, user))
       {:error, _changeset} ->
         conn
-        |> put_flash(:error, "Unable to follow.")
+        |> put_flash(:error, "Unable to follow this user.")
         |> redirect(to: user_path(conn, :show, user))
         |> halt
     end
   end
 
-  def unfollow(conn, %{"id" => id}) do
+  def delete(conn, _param) do
     user = conn.assigns[:user]
-    follower = Repo.get!(Follower, id)
-    Repo.delete!(follower)
-    redirect(conn, to: user_path(conn, :show, user))
+    current_user = conn.assigns[:current_user]
+    query = from f in Follower,
+            where: f.user_id == ^user.id and f.follower_id == ^current_user.id
+    follower = Repo.one! query
+    Repo.delete! follower
+    redirect conn, to: user_path(conn, :show, user)
   end
 
-  defp not_a_follower(conn, _default) do
+  defp not_following(conn, _default) do
     user = conn.assigns[:user]
     current_user = conn.assigns[:current_user]
     query = from f in Follower, where: f.user_id == ^user.id and f.follower_id == ^current_user.id
     if Repo.one(query) do
       conn
-      |> put_flash(:error, "Already following.")
+      |> put_flash(:error, "You are already following this user.")
       |> redirect(to: user_path(conn, :show, user))
       |> halt
     else
@@ -58,12 +61,12 @@ defmodule App.FollowerController do
     end
   end
 
-  defp user_is_not_current_user(conn, _default) do
+  defp not_current_user(conn, _default) do
     user = conn.assigns[:user]
     current_user = conn.assigns[:current_user]
     if user.id === current_user.id do
       conn
-      |> put_flash(:error, "Unable to follow.")
+      |> put_flash(:error, "You can't follow yourself, silly.")
       |> redirect(to: user_path(conn, :show, user))
       |> halt
     else

@@ -1,10 +1,18 @@
 defmodule App.TweetController do
   use App.Web, :controller
 
+  alias App.Favorite
   alias App.Tweet
 
   def index(conn, _param) do
-    tweets = Repo.all Tweet
+    tweets = case get_session(conn, :current_user) do
+      nil ->
+        Repo.all Tweet
+      current_user ->
+        Repo.all Tweet
+        |> join(:left, [t], f in Favorite, f.user_id == ^current_user.id and f.tweet_id == t.id)
+        |> select([t, f], %{t | favorite_id: f.id})
+    end
     render conn, "index.html", tweets: tweets
   end
 

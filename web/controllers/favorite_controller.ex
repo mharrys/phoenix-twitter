@@ -30,11 +30,11 @@ defmodule App.FavoriteController do
     params = %{user_id: current_user.id, tweet_id: tweet.id}
     case Repo.insert(Favorite.changeset(%Favorite{}, params)) do
       {:ok, _favorite} ->
-        redirect conn, to: user_tweet_path(conn, :index, tweet.user_id)
+        redirect conn, to: user_path(conn, :show, tweet.user_id)
       {:error, _changeset} ->
         conn
         |> put_flash(:error, "Unable to favorite tweet.")
-        |> redirect(to: user_tweet_path(conn, :index, tweet.user_id))
+        |> redirect(to: user_path(conn, :show, tweet.user_id))
         |> halt
     end
   end
@@ -45,6 +45,6 @@ defmodule App.FavoriteController do
             where: f.tweet_id == ^tweet_id and f.user_id == ^current_user.id
     favorite = Repo.one! query
     Repo.delete! favorite
-    redirect conn, to: user_tweet_path(conn, :index, current_user.id)
+    redirect conn, to: user_path(conn, :show, current_user.id)
   end
 end

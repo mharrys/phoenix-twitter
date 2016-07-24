@@ -18,8 +18,9 @@
           <ul class="nav nav-pills">
             <li><a href="<%= page_path(@conn, :index) %>">Home</a></li>
             <li><a href="<%= user_path(@conn, :index) %>">Users</a></li>
+            <li><a href="<%= tweet_path(@conn, :index) %>">Tweets</a></li>
             <%= if current_user(@conn) do %>
-              <li><a href="<%= user_tweet_path(@conn, :index, current_user(@conn).id) %>">Profile</a></li>
+              <li><a href="<%= user_path(@conn, :show, current_user(@conn).id) %>">Profile</a></li>
               <li><a href="<%= user_path(@conn, :edit, current_user(@conn).id) %>">Settings</a></li>
               <li><a href="<%= logout_path(@conn, :index) %>">Logout</a></li>
             <% else %>

@@ -1,44 +1,6 @@
 <div class="row">
-  <h2><%= @user.name %></h2>
-
-  <h4>
-    Tweets: <%= length(@user.tweets) %>
-  </h4>
-  <h4>
-    Followers: <a href="<%= user_follower_path(@conn, :followers, @user.id) %>">
-                 <%= length(@user.followers) %>
-               </a>
-  </h4>
-  <h4>
-    Following: <a href="<%= user_follower_path(@conn, :following, @user.id) %>">
-                 <%= length(@user.following) %>
-               </a>
-  </h4>
-  <h4>
-    Favorites: <a href="<%= user_favorite_path(@conn, :index, @user.id) %>">
-                 <%= length(@user.favorites) %>
-               </a>
-  </h4>
-
-  <%= if authenticated(@conn) && !user_profile(@conn) do %>
-    <%= if @follower do %>
-      <a href="<%= user_follower_path(@conn, :unfollow, @user.id, @follower.id) %>">
-        Unfollow
-      </a>
-    <% else %>
-      <a href="<%= user_follower_path(@conn, :follow, @user.id) %>">
-        Follow
-      </a>
-    <% end %>
-  <% end %>
-
-  <%= if user_profile(@conn) do %>
-    <h4>New Tweet</h4>
-    <%= render "form.html", changeset: @changeset, action: user_tweet_path(@conn, :create, @user.id) %>
-  <% end %>
-
-  <h4>Tweets</h4>
-  <%= for tweet <- @user.tweets do %>
+  <h2>Tweets</h2>
+  <%= for tweet <- @tweets do %>
     <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn %>
   <% end %>
 </div>

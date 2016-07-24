@@ -9,7 +9,7 @@
   <div class="col-lg-6">
     <h4>Latest Users</h4>
     <%= for user <- @users do %>
-      <p><a href="<%= user_tweet_path(@conn, :index, user.id) %>"><%= user.name %></a></p>
+      <p><a href="<%= user_path(@conn, :show, user.id) %>"><%= user.name %></a></p>
     <% end %>
   </div>
 </div>

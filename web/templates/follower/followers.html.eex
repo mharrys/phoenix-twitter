@@ -3,7 +3,7 @@
 
   <%= for f <- @followers do %>
     <p>
-      <a href="<%= user_tweet_path(@conn, :index, f.follower.id) %>">
+      <a href="<%= user_path(@conn, :show, f.follower.id) %>">
         <%= f.follower.name %>
       </a>
     </p>

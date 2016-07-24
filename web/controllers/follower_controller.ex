@@ -28,11 +28,11 @@ defmodule App.FollowerController do
     follower = %Follower{user_id: user.id, follower_id: current_user.id}
     case Repo.insert(Follower.changeset(follower, %{})) do
       {:ok, _follower} ->
-        redirect(conn, to: user_tweet_path(conn, :index, user))
+        redirect(conn, to: user_path(conn, :show, user))
       {:error, _changeset} ->
         conn
         |> put_flash(:error, "Unable to follow.")
-        |> redirect(to: user_tweet_path(conn, :index, user))
+        |> redirect(to: user_path(conn, :show, user))
         |> halt
     end
   end
@@ -41,7 +41,7 @@ defmodule App.FollowerController do
     user = conn.assigns[:user]
     follower = Repo.get!(Follower, id)
     Repo.delete!(follower)
-    redirect(conn, to: user_tweet_path(conn, :index, user))
+    redirect(conn, to: user_path(conn, :show, user))
   end
 
   defp not_a_follower(conn, _default) do
@@ -51,7 +51,7 @@ defmodule App.FollowerController do
     if Repo.one(query) do
       conn
       |> put_flash(:error, "Already following.")
-      |> redirect(to: user_tweet_path(conn, :index, user))
+      |> redirect(to: user_path(conn, :show, user))
       |> halt
     else
       conn
@@ -64,7 +64,7 @@ defmodule App.FollowerController do
     if user.id === current_user.id do
       conn
       |> put_flash(:error, "Unable to follow.")
-      |> redirect(to: user_tweet_path(conn, :index, user))
+      |> redirect(to: user_path(conn, :show, user))
       |> halt
     else
       conn

@@ -1,6 +1,6 @@
 <div class="row">
   <h2>Users</h2>
   <%= for user <- @users do %>
-    <p><a href="<%= user_tweet_path(@conn, :index, user.id) %>"><%= user.name %></a></p>
+    <p><a href="<%= user_path(@conn, :show, user.id) %>"><%= user.name %></a></p>
   <% end %>
 </div>

@@ -26,18 +26,18 @@ defmodule App.Router do
 
     get "/logout", LogoutController, :index
 
-    resources "/users", UserController, only: [:index, :edit, :update] do
-      resources "/tweets", TweetController, only: [:index, :create]
+    resources "/users", UserController, only: [:index, :show, :edit, :update] do
+      resources "/tweets", TweetController, only: [:create]
 
       get "/followers", FollowerController, :followers
       get "/following", FollowerController, :following
+      get "/favorites", FavoriteController, :index
+
       get "/follow", FollowerController, :follow
       get "/unfollow/:id", FollowerController, :unfollow
-
-      get "/favorites", FavoriteController, :index
     end
 
-    resources "/tweets", TweetController, only: [] do
+    resources "/tweets", TweetController, only: [:index] do
       post   "/favorite", FavoriteController, :create
       delete "/favorite", FavoriteController, :delete
     end

@@ -16,5 +16,6 @@ defmodule App.Follower do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:user_id, :follower_id])
+    |> unique_constraint(:follower_pair, name: :followers_user_id_follower_id_index)
   end
 end

@@ -40,6 +40,9 @@ defmodule App.Router do
     resources "/tweets", TweetController, only: [:index] do
       post   "/favorite", FavoriteController, :create
       delete "/favorite", FavoriteController, :delete
+
+      post   "/retweet", RetweetController, :create
+      delete "/retweet", RetweetController, :delete
     end
   end
 

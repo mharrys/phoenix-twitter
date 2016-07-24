@@ -9,7 +9,7 @@ defmodule App.UserController do
   import Ecto.Changeset
 
   def index(conn, _params) do
-    users = Repo.all User
+    users = Repo.all User |> order_by([u], [asc: u.name])
     render conn, "index.html", users: users
   end
 
@@ -33,15 +33,9 @@ defmodule App.UserController do
       |> halt
     end
 
-    user = if current_user do
-      tweets = Repo.all Tweet
-      |> where([t], t.user_id == ^user.id)
-      |> join(:left, [t], f in Favorite, f.user_id == ^current_user.id and f.tweet_id == t.id)
-      |> select([t, f], %{t | favorite_id: f.id})
-      %{user | tweets: tweets}
-    else
-      user |> Repo.preload(:tweets)
-    end
+    # fetch user tweets including retweets
+    current_user_id = if current_user do current_user.id end
+    user = %{user | tweets: fetch_user_tweets(String.to_integer(id), current_user_id)}
 
     changeset = Tweet.changeset(%Tweet{})
     render conn, "show.html", user: user, changeset: changeset
@@ -80,5 +74,19 @@ defmodule App.UserController do
       {:error, changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
     end
+  end
+
+  defp fetch_user_tweets(id, current_user_id) do
+    {:ok, result} = Ecto.Adapters.SQL.query(Repo, "SELECT * FROM fetch_user_tweets($1, $2)", [id, current_user_id])
+    Enum.map(result.rows, fn([id, text, user_id, inserted_at, updated_at, retweet_id, favorite_id]) ->
+      %Tweet{
+        id: id,
+        text: text,
+        user_id: user_id,
+        inserted_at: inserted_at,
+        updated_at: updated_at,
+        retweet_id: retweet_id,
+        favorite_id: favorite_id}
+    end)
   end
 end

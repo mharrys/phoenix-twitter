@@ -8,8 +8,10 @@ defmodule App.TweetController do
     tweets = case get_session(conn, :current_user) do
       nil ->
         Repo.all Tweet
+        |> order_by([t], [desc: t.inserted_at])
       current_user ->
         Repo.all Tweet
+        |> order_by([t], [desc: t.inserted_at])
         |> join(:left, [t], f in Favorite, f.user_id == ^current_user.id and f.tweet_id == t.id)
         |> select([t, f], %{t | favorite_id: f.id})
     end

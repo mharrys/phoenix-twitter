@@ -7,14 +7,14 @@
 
   <%= if current_user(@conn) do %>
     <%= if @show_rt do %>
-      <%= if @tweet.retweet_id do %>
+      <%= if @tweet.current_user_retweet_id do %>
         <%= link("[Remove retweet]", to: tweet_retweet_path(@conn, :delete, @tweet.id), method: "delete") %>
       <% else %>
         <%= link("[Retweet]", to: tweet_retweet_path(@conn, :create, @tweet.id), method: "create") %>
       <% end %>
     <% end %>
 
-    <%= if @tweet.favorite_id do %>
+    <%= if @tweet.current_user_favorite_id do %>
       <%= link("[Remove favorite]", to: tweet_favorite_path(@conn, :delete, @tweet.id), method: "delete") %>
     <% else %>
       <%= link("[Favorite]", to: tweet_favorite_path(@conn, :create, @tweet.id), method: "create") %>

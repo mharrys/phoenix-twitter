@@ -2,7 +2,6 @@ defmodule App.UserController do
   use App.Web, :controller
 
   alias App.Follower
-  alias App.Favorite
   alias App.Tweet
   alias App.User
 
@@ -18,9 +17,9 @@ defmodule App.UserController do
 
     query = User |> where([u], u.id == ^id)
     query = if current_user do
-        query
-        |> join(:left, [u], f in Follower, f.user_id == ^id and f.follower_id == ^current_user.id)
-        |> select([u, f], %{u | follower_id: f.id})
+      query
+      |> join(:left, [u], f in Follower, f.user_id == ^id and f.follower_id == ^current_user.id)
+      |> select([u, f], %{u | follower_id: f.id})
     else
         query
     end
@@ -78,7 +77,7 @@ defmodule App.UserController do
 
   defp fetch_user_tweets(id, current_user_id) do
     {:ok, result} = Ecto.Adapters.SQL.query(Repo, "SELECT * FROM fetch_user_tweets($1, $2)", [id, current_user_id])
-    Enum.map(result.rows, fn([id, text, user_id, inserted_at, updated_at, retweet_id, favorite_id]) ->
+    Enum.map(result.rows, fn([id, text, user_id, inserted_at, updated_at, retweet_id, current_user_favorite_id, current_user_retweet_id]) ->
       %Tweet{
         id: id,
         text: text,
@@ -86,7 +85,8 @@ defmodule App.UserController do
         inserted_at: inserted_at,
         updated_at: updated_at,
         retweet_id: retweet_id,
-        favorite_id: favorite_id}
+        current_user_favorite_id: current_user_favorite_id,
+        current_user_retweet_id: current_user_retweet_id}
     end)
   end
 end

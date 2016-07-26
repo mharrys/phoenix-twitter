@@ -19,9 +19,9 @@ defmodule App.Repo.Migrations.FetchUserTweets do
       user_id tweets.user_id%TYPE,
       inserted_at tweets.inserted_at%TYPE,
       updated_at tweets.updated_at%TYPE,
-      retweet_id retweets.id%TYPE,
-      favorite_id favorites.id%TYPE)
-
+      user_retweet_id retweets.id%TYPE,
+      current_user_favorite_id favorites.id%TYPE,
+      current_user_retweet_id retweets.id%TYPE)
     AS $$
       BEGIN
         RETURN QUERY WITH
@@ -37,9 +37,10 @@ defmodule App.Repo.Migrations.FetchUserTweets do
           WHERE r.user_id = _user_id
         )
 
-        SELECT t.id, t.text, t.user_id, t.inserted_at, t.updated_at, t.retweet_id, f.id AS favorite_id
+        SELECT t.id, t.text, t.user_id, t.inserted_at, t.updated_at, t.retweet_id, f.id AS current_user_favorite_id, r.id AS current_user_retweet_id
         FROM _tweets AS t
         LEFT OUTER JOIN favorites AS f ON (f.user_id = _current_user_id) AND (f.tweet_id = t.id)
+        LEFT OUTER JOIN retweets AS r ON (r.user_id = _current_user_id) AND (r.tweet_id = t.id)
         ORDER BY inserted_at DESC;
       END;
     $$ LANGUAGE plpgsql;

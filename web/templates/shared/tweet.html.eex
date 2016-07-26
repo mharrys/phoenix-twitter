@@ -1,5 +1,7 @@
 <p>
-  <strong>RT</strong>
+  <%= if @tweet.retweet_id do %>
+    <strong>RT</strong>
+  <% end %>
   <%= @tweet.text %>
 
   <%= if current_user(@conn) do %>

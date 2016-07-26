@@ -2,6 +2,7 @@ defmodule App.FavoriteController do
   use App.Web, :controller
 
   alias App.Favorite
+  alias App.Retweet
   alias App.Tweet
 
   plug App.SetUser, [:favorites] when action in [:index]
@@ -18,7 +19,8 @@ defmodule App.FavoriteController do
       current_user ->
         query
         |> join(:left, [f, _], f2 in Favorite, f2.tweet_id == f.tweet_id and f2.user_id == ^current_user.id)
-        |> select([f, t, f2], %{t | favorite_id: f2.id})
+        |> join(:left, [t, _, _], r in Retweet, r.user_id == ^current_user.id and r.tweet_id == t.id)
+        |> select([f, t, f2, r], %{t | current_user_favorite_id: f2.id, current_user_retweet_id: r.id})
     end
     tweets = Repo.all query
     render conn, "index.html", tweets: tweets

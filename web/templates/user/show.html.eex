@@ -35,6 +35,6 @@
 
   <h4>Tweets</h4>
   <%= for tweet <- @user.tweets do %>
-    <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn, show_rt: true %>
+    <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn %>
   <% end %>
 </div>

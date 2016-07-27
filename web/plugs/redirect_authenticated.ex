@@ -5,18 +5,18 @@ defmodule App.RedirectAuthenticated do
   """
   import Phoenix.Controller, only: [put_flash: 3, redirect: 2]
   import Plug.Conn, only: [get_session: 2, halt: 1]
-  import App.Router.Helpers, only: [page_path: 2]
+  import App.Router.Helpers, only: [user_path: 3]
 
   def init(default), do: default
 
   def call(conn, _default) do
-    if get_session(conn, :current_user) do
-      conn
-      |> put_flash(:info, "You are already logged in.")
-      |> redirect(to: page_path(conn, :index))
-      |> halt
-    else
-      conn
+    case get_session(conn, :current_user) do
+      nil ->
+        conn
+      current_user ->
+        conn
+        |> redirect(to: user_path(conn, :show, current_user.id))
+        |> halt
     end
   end
 end

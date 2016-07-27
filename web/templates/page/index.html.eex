@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-lg-6">
-    <h4>Latest Tweets</h4>
+    <h3>Latest Tweets</h3>
     <%= for tweet <- @tweets do %>
       <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn %>
     <% end %>
   </div>
 
   <div class="col-lg-6">
-    <h4>Latest Users</h4>
+    <h3>Latest Users</h3>
     <%= for user <- @users do %>
       <p><a href="<%= user_path(@conn, :show, user.id) %>"><%= user.name %></a></p>
     <% end %>

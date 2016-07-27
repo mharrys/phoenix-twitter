@@ -1,1 +1,4 @@
-/* This file is for your main application css. */
+body {
+  padding-top: 40px;
+  padding-bottom: 20px;
+}

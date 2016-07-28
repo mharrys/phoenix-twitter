@@ -1,6 +1,8 @@
 <div class="row">
-  <h2>Favorites</h2>
-  <%= for tweet <- @tweets do %>
-    <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn %>
-  <% end %>
+  <div class="col-lg-12">
+    <h2>Favorites</h2>
+    <%= for tweet <- @tweets do %>
+      <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn %>
+    <% end %>
+  </div>
 </div>

@@ -1,6 +1,8 @@
 <div class="row">
-  <h2>Users</h2>
-  <%= for user <- @users do %>
-    <p><a href="<%= user_path(@conn, :show, user.id) %>"><%= user.name %></a></p>
-  <% end %>
+  <div class="col-lg-12">
+    <h2>Users</h2>
+    <%= for user <- @users do %>
+      <p><a href="<%= user_path(@conn, :show, user.id) %>"><%= user.name %></a></p>
+    <% end %>
+  </div>
 </div>

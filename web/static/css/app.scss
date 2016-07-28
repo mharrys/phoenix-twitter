@@ -1,5 +1,13 @@
 @import "bootstrap";
 
 body {
-  padding-top: 70px;
+  margin-top: 60px;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.alert:empty {
+  display: none;
 }

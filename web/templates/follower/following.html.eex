@@ -1,11 +1,8 @@
 <div class="row">
-  <h2><%= @user.name %> is following:</h2>
-
-  <%= for f <- @following do %>
-    <p>
-      <a href="<%= user_path(@conn, :show, f.user.id) %>">
-        <%= f.user.name %>
-      </a>
-    </p>
-  <% end %>
+  <div class="col-lg-12">
+    <h2><%= @user.name %> is following:</h2>
+    <%= for f <- @following do %>
+      <p><a href="<%= user_path(@conn, :show, f.user.id) %>"><%= f.user.name %></a></p>
+    <% end %>
+  </div>
 </div>

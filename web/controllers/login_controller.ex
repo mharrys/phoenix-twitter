@@ -18,7 +18,7 @@ defmodule App.LoginController do
         |> redirect(to: user_path(conn, :show, user))
       :error ->
         conn
-        |> put_flash(:error, "Wrong login or password.")
+        |> put_flash(:error, "Unknown login or wrong password.")
         |> render("index.html")
     end
   end

@@ -5,10 +5,11 @@ defmodule App.FavoriteController do
   alias App.Retweet
   alias App.Tweet
 
-  plug App.SetUser, [:favorites] when action in [:index]
+  plug App.SetUser, [:tweets, :followers, :favorites, :following] when action in [:index]
   plug App.LoginRequired when action in [:create, :delete]
 
   def index(conn, %{"user_id" => user_id}) do
+    user = conn.assigns[:user]
     query = Favorite
     |> where([f], f.user_id == ^user_id)
     |> join(:left, [f], t in assoc(f, :tweet))
@@ -22,8 +23,8 @@ defmodule App.FavoriteController do
         |> join(:left, [t, _, _], r in Retweet, r.user_id == ^current_user.id and r.tweet_id == t.id)
         |> select([f, t, f2, r], %{t | current_user_favorite_id: f2.id, current_user_retweet_id: r.id})
     end
-    tweets = Repo.all query
-    render conn, "index.html", tweets: tweets
+    tweets = Repo.all(query) |> Repo.preload(:user)
+    render conn, "index.html", user: user, tweets: tweets
   end
 
   def create(conn, %{"tweet_id" => tweet_id}) do

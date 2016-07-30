@@ -1,29 +1,29 @@
 <div class="row">
-  <div class="col-lg-3">
-    <h4><%= @user.name %></h4>
-    <h4>Tweets: <%= length(@user.tweets) %></h4>
-    <h4>Followers: <a href="<%= user_follower_path(@conn, :followers, @user.id) %>"><%= length(@user.followers) %></a></h4>
-    <h4>Following: <a href="<%= user_follower_path(@conn, :following, @user.id) %>"><%= length(@user.following) %></a></h4>
-    <h4>Favorites: <a href="<%= user_favorite_path(@conn, :index, @user.id) %>"><%= length(@user.favorites) %></a></h4>
+  <div class="col-lg-4">
+    <div class="area-no-click">
+      <h4><%= @user.name %></h4>
 
-    <%= if authenticated(@conn) && !user_profile(@conn) do %>
-      <%= if @user.follower_id do %>
-        <%= link("Unfollow", to: user_follower_path(@conn, :delete, @user.id), method: "delete") %>
-      <% else %>
-        <%= link("Follow", to: user_follower_path(@conn, :create, @user.id), method: "post") %>
+      <%= if authenticated(@conn) && !user_profile(@conn) do %>
+        <%= if @user.follower_id do %>
+          <%= button("Unfollow", class: "btn btn-default", to: user_follower_path(@conn, :delete, @user.id), method: "delete") %>
+        <% else %>
+          <%= button("Follow", class: "btn btn-primary", to: user_follower_path(@conn, :create, @user.id), method: "post") %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
 
-    <%= if user_profile(@conn) do %>
-      <h4>New Tweet</h4>
-      <%= render App.TweetView, "form.html", changeset: @changeset, action: user_tweet_path(@conn, :create, @user.id) %>
-    <% end %>
+    <%= render App.SharedView, "user_stats.html", conn: @conn, user: @user, active: "tweets" %>
   </div>
 
-  <div class="col-lg-9">
-    <h4>Tweets</h4>
+  <div class="col-lg-8">
+    <div class="area-no-click"><h4>Tweets</h4></div>
+    <%= if user_profile(@conn) do %>
+      <div class="area-no-click">
+        <%= render App.TweetView, "form.html", changeset: @changeset, action: user_tweet_path(@conn, :create, @user.id) %>
+      </div>
+    <% end %>
     <%= for tweet <- @user.tweets do %>
-      <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn %>
+      <%= render App.SharedView, "tweet.html", conn: @conn, user: @user, tweet: tweet %>
     <% end %>
   </div>
 </div>

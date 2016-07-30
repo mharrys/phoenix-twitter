@@ -35,6 +35,7 @@ defmodule App.UserController do
     # fetch user tweets including retweets
     current_user_id = if current_user do current_user.id end
     user = %{user | tweets: fetch_user_tweets(String.to_integer(id), current_user_id)}
+    user = %{user | tweets: user.tweets |> Repo.preload(:user)}
 
     changeset = Tweet.changeset(%Tweet{})
     render conn, "show.html", user: user, changeset: changeset

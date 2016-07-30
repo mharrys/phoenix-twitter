@@ -1,8 +1,24 @@
 <div class="row">
-  <div class="col-lg-12">
-    <h2>Favorites</h2>
+  <div class="col-lg-4">
+    <div class="area-no-click">
+      <h4><%= @user.name %></h4>
+
+      <%= if authenticated(@conn) && !user_profile(@conn) do %>
+        <%= if @user.follower_id do %>
+          <%= button("Unfollow", class: "btn btn-default", to: user_follower_path(@conn, :delete, @user.id), method: "delete") %>
+        <% else %>
+          <%= button("Follow", class: "btn btn-primary", to: user_follower_path(@conn, :create, @user.id), method: "post") %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= render App.SharedView, "user_stats.html", conn: @conn, user: @user, active: "favorites" %>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="area-no-click"><h4>Favorites</h4></div>
     <%= for tweet <- @tweets do %>
-      <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn %>
+      <%= render App.SharedView, "tweet.html", conn: @conn, user: @user, tweet: tweet %>
     <% end %>
   </div>
 </div>

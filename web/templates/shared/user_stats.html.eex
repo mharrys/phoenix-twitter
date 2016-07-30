@@ -1,0 +1,20 @@
+<div class="area-no-click">
+  <div class="user-stats">
+    <div class="stats">
+      <div class="header">Tweets</div>
+      <div class="content <%= if @active === "tweets" do %>active<% end %>"><a href="<%= user_path(@conn, :show, @user.id) %>"><%= length(@user.tweets) %></a></div>
+    </div>
+    <div class="stats">
+      <div class="header">Following</div>
+      <div class="content <%= if @active === "following" do %>active<% end %>"><a href="<%= user_follower_path(@conn, :following, @user.id) %>"><%= length(@user.following) %></a></div>
+    </div>
+    <div class="stats">
+      <div class="header">Followers</div>
+      <div class="content <%= if @active === "followers" do %>active<% end %>"><a href="<%= user_follower_path(@conn, :followers, @user.id) %>"><%= length(@user.followers) %></a></div>
+    </div>
+    <div class="stats">
+      <div class="header">Favorites</div>
+      <div class="content <%= if @active == "favorites" do %>active<% end %>"><a href="<%= user_favorite_path(@conn, :index, @user.id) %>"><%= length(@user.favorites) %></a></div>
+    </div>
+  </div>
+</div>

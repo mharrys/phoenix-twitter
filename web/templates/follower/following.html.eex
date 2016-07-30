@@ -1,8 +1,24 @@
 <div class="row">
-  <div class="col-lg-12">
-    <h2><%= @user.name %> is following:</h2>
+  <div class="col-lg-4">
+    <div class="area-no-click">
+      <h4><%= @user.name %></h4>
+
+      <%= if authenticated(@conn) && !user_profile(@conn) do %>
+        <%= if @user.follower_id do %>
+          <%= button("Unfollow", class: "btn btn-default", to: user_follower_path(@conn, :delete, @user.id), method: "delete") %>
+        <% else %>
+          <%= button("Follow", class: "btn btn-primary", to: user_follower_path(@conn, :create, @user.id), method: "post") %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= render App.SharedView, "user_stats.html", conn: @conn, user: @user, active: "following" %>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="area-no-click"><h4>Following</h4></div>
     <%= for f <- @following do %>
-      <p><a href="<%= user_path(@conn, :show, f.user.id) %>"><%= f.user.name %></a></p>
+      <div class="area-no-click"><a href="<%= user_path(@conn, :show, f.user.id) %>"><%= f.user.name %></a></div>
     <% end %>
   </div>
 </div>

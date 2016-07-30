@@ -17,6 +17,7 @@ defmodule App.TweetController do
         |> join(:left, [t, f], r in Retweet, r.user_id == ^current_user.id and r.tweet_id == t.id)
         |> select([t, f, r], %{t | current_user_favorite_id: f.id, current_user_retweet_id: r.id})
     end
+    tweets = tweets |> Repo.preload(:user)
     render conn, "index.html", tweets: tweets
   end
 

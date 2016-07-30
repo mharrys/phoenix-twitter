@@ -11,17 +11,8 @@ defmodule App.RetweetController do
     tweet = Repo.get! Tweet, tweet_id
     retweet_param = %{tweet_id: tweet.id, user_id: current_user.id}
     changeset = Retweet.changeset(%Retweet{}, retweet_param)
-    case Repo.insert changeset do
-      {:ok, _retweet} ->
-        conn
-        |> put_flash(:info, "Successfully posted retweet.")
-        |> redirect(to: user_path(conn, :show, current_user.id))
-      {:error, _changeset} ->
-        conn
-        |> put_flash(:error, "Unable to retweet.")
-        |> redirect(to: user_path(conn, :show, tweet.user_id))
-        |> halt
-    end
+    Repo.insert! changeset
+    redirect conn, to: user_path(conn, :show, current_user.id)
   end
 
   def delete(conn, %{"tweet_id" => tweet_id}) do

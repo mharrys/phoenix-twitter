@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-lg-6">
-    <h3>Latest Tweets</h3>
+    <div class="area-no-click"><h4>Latest Tweets</h4></div>
     <%= for tweet <- @tweets do %>
-      <%= render App.SharedView, "tweet.html", tweet: tweet, conn: @conn %>
+      <%= render App.SharedView, "tweet.html", conn: @conn, tweet: tweet %>
     <% end %>
   </div>
 
   <div class="col-lg-6">
-    <h3>Latest Users</h3>
+    <div class="area-no-click"><h4>Latest Users</h4></div>
     <%= for user <- @users do %>
-      <p><a href="<%= user_path(@conn, :show, user.id) %>"><%= user.name %></a></p>
+      <div class="area-no-click"><a href="<%= user_path(@conn, :show, user.id) %>"><%= user.name %></a></div>
     <% end %>
   </div>
 </div>

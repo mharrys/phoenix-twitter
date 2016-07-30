@@ -1,13 +1,129 @@
+$navbar-default-bg: #fff;
+
 @import "bootstrap";
 
-body {
-  margin-top: 60px;
-}
+$background-color: #f5f8fa;
+$text-color-dark: #aab8c2;
+$retweet-hover-color: #19cf86;
+$favorite-hover-color: #e2264d;
+$area-bg-color: #fff;
+$area-border-color: #e1e8ed;
+$area-border: 1px solid $area-border-color;
+$stats-border: 4px solid $link-color;
 
-.alert {
-  margin-top: 20px;
+body {
+  margin-top: 70px;
+  background-color: $background-color;
 }
 
 .alert:empty {
   display: none;
+}
+
+.user-stats {
+  display: block;
+  text-align: center;
+}
+
+.stats {
+  display: inline-block;
+  margin-right: 10px;
+
+  .header {
+    @extend .small;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .content {
+    font-size: $font-size-large;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  .active {
+    border-bottom: $stats-border;
+  }
+}
+
+.small-text {
+  font-size: $font-size-small;
+  color: $text-color-dark;
+}
+
+.area {
+  background-color: $area-bg-color;
+  border: $area-border;
+  border-bottom: 0;
+  padding: 10px;
+
+  &:last-child {
+    border-bottom: $area-border;
+    margin-bottom: 20px;
+  }
+
+  .meta {
+    .name {
+      a {
+        color: black;
+        font-weight: bold;
+        &:hover {
+          color: $link-hover-color;
+        }
+      }
+    }
+  }
+
+  .text {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .action {
+    a {
+      font-size: $font-size-large;
+      color: $text-color-dark;
+      text-decoration: none;
+    }
+
+    .retweet {
+      &:hover {
+        color: $retweet-hover-color;
+      }
+    }
+
+    .favorite {
+      &:hover {
+        color: $favorite-hover-color;
+      }
+    }
+
+    .retweeted {
+      & {
+        color: $retweet-hover-color;
+      }
+    }
+
+    .favorited {
+      & {
+        color: $favorite-hover-color;
+      }
+    }
+
+    form {
+      display: inline;
+    }
+  }
+
+  &:hover {
+    background-color: $background-color;
+  }
+}
+
+.area-no-click {
+  @extend .area;
+
+  &:hover {
+    background-color: $area-bg-color;
+  }
 }

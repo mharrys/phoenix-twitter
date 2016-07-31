@@ -11,6 +11,7 @@ defmodule App.FavoriteController do
   def index(conn, %{"user_id" => user_id}) do
     user = conn.assigns[:user]
     query = Favorite
+    |> order_by([f], [desc: f.inserted_at])
     |> where([f], f.user_id == ^user_id)
     |> join(:left, [f], t in assoc(f, :tweet))
     query = case get_session(conn, :current_user) do
@@ -33,10 +34,12 @@ defmodule App.FavoriteController do
     params = %{user_id: current_user.id, tweet_id: tweet.id}
     case Repo.insert(Favorite.changeset(%Favorite{}, params)) do
       {:ok, _favorite} ->
-        redirect conn, to: user_path(conn, :show, tweet.user_id)
+        conn
+        |> put_flash(:info, "Tweet added to your favorites")
+        |> redirect(to: user_favorite_path(conn, :index, current_user.id))
       {:error, _changeset} ->
         conn
-        |> put_flash(:error, "Unable to favorite tweet.")
+        |> put_flash(:error, "Unable to favorite tweet")
         |> redirect(to: user_path(conn, :show, tweet.user_id))
         |> halt
     end
@@ -48,6 +51,8 @@ defmodule App.FavoriteController do
             where: f.tweet_id == ^tweet_id and f.user_id == ^current_user.id
     favorite = Repo.one! query
     Repo.delete! favorite
-    redirect conn, to: user_path(conn, :show, current_user.id)
+    conn
+    |> put_flash(:info, "Tweet removed from your favorites")
+    |> redirect(to: user_favorite_path(conn, :index, current_user.id))
   end
 end

@@ -18,7 +18,7 @@
   <div class="col-lg-8">
     <div class="area-no-click"><h4>Following</h4></div>
     <%= for f <- @following do %>
-      <div class="area-no-click"><a href="<%= user_path(@conn, :show, f.user.id) %>"><%= f.user.name %></a></div>
+      <%= render App.SharedView, "user_item.html", conn: @conn, user: f.user %>
     <% end %>
   </div>
 </div>

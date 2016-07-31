@@ -18,7 +18,7 @@
   <div class="col-lg-8">
     <div class="area-no-click"><h4>Favorites</h4></div>
     <%= for tweet <- @tweets do %>
-      <%= render App.SharedView, "tweet.html", conn: @conn, user: @user, tweet: tweet %>
+      <%= render App.SharedView, "tweet_item.html", conn: @conn, user: @user, tweet: tweet %>
     <% end %>
   </div>
 </div>

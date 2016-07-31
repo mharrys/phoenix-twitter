@@ -9,7 +9,7 @@
   <div class="col-lg-6">
     <div class="area-no-click"><h4>Latest Tweets</h4></div>
     <%= for tweet <- @tweets do %>
-      <%= render App.SharedView, "tweet.html", conn: @conn, tweet: tweet %>
+      <%= render App.SharedView, "tweet_item.html", conn: @conn, tweet: tweet %>
     <% end %>
   </div>
 </div>

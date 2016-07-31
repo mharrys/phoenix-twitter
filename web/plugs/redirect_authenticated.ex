@@ -3,7 +3,7 @@ defmodule App.RedirectAuthenticated do
   The responsibility of this plug is to route already authenticated user to
   root, otherwise continue as normal.
   """
-  import Phoenix.Controller, only: [put_flash: 3, redirect: 2]
+  import Phoenix.Controller, only: [redirect: 2]
   import Plug.Conn, only: [get_session: 2, halt: 1]
   import App.Router.Helpers, only: [user_path: 3]
 

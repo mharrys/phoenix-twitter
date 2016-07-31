@@ -12,5 +12,4 @@ defmodule App.SharedView do
     {:ok, dump} = Ecto.DateTime.dump(datetime)
     format_datetime(dump)
   end
-
 end

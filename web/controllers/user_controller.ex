@@ -47,7 +47,7 @@ defmodule App.UserController do
     case Repo.update(changeset) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "Settings updated successfully.")
+        |> put_flash(:info, "Settings updated successfully")
         |> redirect(to: user_path(conn, :show, user))
       {:error, changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)

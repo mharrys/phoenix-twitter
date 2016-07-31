@@ -30,7 +30,7 @@ defmodule App.FollowerController do
         redirect(conn, to: user_path(conn, :show, user))
       {:error, _changeset} ->
         conn
-        |> put_flash(:error, "Unable to follow this user.")
+        |> put_flash(:error, "Unable to follow this user")
         |> redirect(to: user_path(conn, :show, user))
         |> halt
     end
@@ -52,7 +52,7 @@ defmodule App.FollowerController do
     query = from f in Follower, where: f.user_id == ^user.id and f.follower_id == ^current_user.id
     if Repo.one(query) do
       conn
-      |> put_flash(:error, "You are already following this user.")
+      |> put_flash(:error, "You are already following this user")
       |> redirect(to: user_path(conn, :show, user))
       |> halt
     else
@@ -65,7 +65,7 @@ defmodule App.FollowerController do
     current_user = conn.assigns[:current_user]
     if user.id === current_user.id do
       conn
-      |> put_flash(:error, "You can't follow yourself, silly.")
+      |> put_flash(:error, "You can't follow yourself, silly")
       |> redirect(to: user_path(conn, :show, user))
       |> halt
     else

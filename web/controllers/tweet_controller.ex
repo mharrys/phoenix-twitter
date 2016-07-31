@@ -31,7 +31,7 @@ defmodule App.TweetController do
     case Repo.insert(changeset) do
       {:ok, _tweet} ->
         conn
-        |> put_flash(:info, "Successfully posted new tweet.")
+        |> put_flash(:info, "Successfully posted new tweet")
         |> redirect(to: user_path(conn, :show, user))
       {:error, changeset} ->
         conn

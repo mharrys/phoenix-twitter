@@ -5,6 +5,10 @@ defmodule App.TweetController do
   alias App.Retweet
   alias App.Tweet
 
+  plug App.LoginRequired when action in [:create]
+  plug App.SetUser when action in [:create]
+  plug :is_authorized? when action in [:create]
+
   def index(conn, _param) do
     query = Tweet |> order_by([t], [desc: t.inserted_at])
     query = case get_session(conn, :current_user) do
@@ -20,10 +24,6 @@ defmodule App.TweetController do
     render conn, "index.html", tweets: tweets
   end
 
-  plug App.SetUser when action in [:create, :delete]
-  plug App.LoginRequired when action in [:create]
-  plug :is_authorized? when action in [:create]
-
   def create(conn, %{"tweet" => tweet_params}) do
     user = conn.assigns[:user]
     changeset = Tweet.changeset(%Tweet{user_id: user.id}, tweet_params)
@@ -33,8 +33,7 @@ defmodule App.TweetController do
         |> put_flash(:info, "Successfully posted new tweet")
         |> redirect(to: user_path(conn, :show, user))
       {:error, changeset} ->
-        conn
-        |> render("index.html", user: user, changeset: changeset)
+        render conn, App.UserView, "show.html", user: user, changeset: changeset
     end
   end
 

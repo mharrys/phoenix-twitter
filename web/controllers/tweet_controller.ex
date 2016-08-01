@@ -6,18 +6,17 @@ defmodule App.TweetController do
   alias App.Tweet
 
   def index(conn, _param) do
-    tweets = case get_session(conn, :current_user) do
+    query = Tweet |> order_by([t], [desc: t.inserted_at])
+    query = case get_session(conn, :current_user) do
       nil ->
-        Repo.all Tweet
-        |> order_by([t], [desc: t.inserted_at])
+        query
       current_user ->
-        Repo.all Tweet
-        |> order_by([t], [desc: t.inserted_at])
+        query
         |> join(:left, [t], f in Favorite, f.user_id == ^current_user.id and f.tweet_id == t.id)
         |> join(:left, [t, f], r in Retweet, r.user_id == ^current_user.id and r.tweet_id == t.id)
         |> select([t, f, r], %{t | current_user_favorite_id: f.id, current_user_retweet_id: r.id})
     end
-    tweets = tweets |> Repo.preload(:user)
+    tweets = Repo.all(query) |> Repo.preload(:user)
     render conn, "index.html", tweets: tweets
   end
 

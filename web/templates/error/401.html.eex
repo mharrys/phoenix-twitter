@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="area-no-click">
+      <h4>401 Unauthorized</h4>
+    </div>
+    <div class="area-no-click">
+      You are not in the authorized file. This incident will be reported.
+    </div>
+  </div>
+</div>

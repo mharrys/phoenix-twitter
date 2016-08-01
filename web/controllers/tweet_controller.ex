@@ -25,8 +25,9 @@ defmodule App.TweetController do
   end
 
   def create(conn, %{"tweet" => tweet_params}) do
+    current_user = conn.assigns[:current_user]
     user = conn.assigns[:user]
-    changeset = Tweet.changeset(%Tweet{user_id: user.id}, tweet_params)
+    changeset = Tweet.changeset(%Tweet{user_id: current_user.id}, tweet_params)
     case Repo.insert(changeset) do
       {:ok, _tweet} ->
         conn

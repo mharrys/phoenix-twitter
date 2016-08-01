@@ -6,6 +6,7 @@ defmodule App.UserController do
 
   import Ecto.Changeset
 
+  plug App.LoginRequired when action in [:edit, :update]
   plug App.SetUser when action in [:show]
 
   def index(conn, _params) do

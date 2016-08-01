@@ -26,7 +26,7 @@ defmodule App.FollowerController do
     follower = %Follower{user_id: user.id, follower_id: current_user.id}
     case Repo.insert(Follower.changeset(follower, %{})) do
       {:ok, _follower} ->
-        redirect(conn, to: user_path(conn, :show, user))
+        redirect(conn, to: user_follower_path(conn, :following, current_user.id))
       {:error, _changeset} ->
         conn
         |> put_flash(:error, "Unable to follow this user")
@@ -42,7 +42,7 @@ defmodule App.FollowerController do
             where: f.user_id == ^user.id and f.follower_id == ^current_user.id
     follower = Repo.one! query
     Repo.delete! follower
-    redirect conn, to: user_path(conn, :show, user)
+    redirect conn, to: user_follower_path(conn, :following, current_user.id)
   end
 
   defp not_following(conn, _default) do

@@ -4,8 +4,7 @@ defmodule App.FollowerController do
   alias App.Follower
 
   plug App.LoginRequired when action in [:create, :delete]
-  plug App.SetUser, [:tweets, :followers, :favorites, :following] when action in [:following, :followers]
-  plug App.SetUser when action in [:create, :delete]
+  plug App.SetUser
   plug :not_following when action in [:create]
   plug :not_current_user when action in [:create, :delete]
 

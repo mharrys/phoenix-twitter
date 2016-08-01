@@ -5,7 +5,7 @@ defmodule App.FavoriteController do
   alias App.Retweet
   alias App.Tweet
 
-  plug App.SetUser, [:tweets, :followers, :favorites, :following] when action in [:index]
+  plug App.SetUser when action in [:index]
   plug App.LoginRequired when action in [:create, :delete]
 
   def index(conn, %{"user_id" => user_id}) do

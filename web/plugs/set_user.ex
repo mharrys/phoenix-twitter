@@ -23,6 +23,11 @@ defmodule App.SetUser do
   end
 
   defp run(conn, user_id) do
+    user_id = try do
+      String.to_integer(user_id)
+    rescue
+      _ in ArgumentError -> 0
+    end
     current_user = get_session(conn, :current_user)
     query = User |> where([u], u.id == ^user_id)
     query = if current_user do
@@ -40,7 +45,7 @@ defmodule App.SetUser do
         |> halt
       user ->
         current_user_id = if current_user do current_user.id end
-        tweets = fetch_user_tweets(String.to_integer(user_id), current_user_id) |> Repo.preload(:user)
+        tweets = fetch_user_tweets(user_id, current_user_id) |> Repo.preload(:user)
         user = %{user | tweets: tweets} |> Repo.preload([:followers, :following, :favorites])
         assign conn, :user, user
     end

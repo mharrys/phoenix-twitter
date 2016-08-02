@@ -27,5 +27,9 @@
     <% else %>
       <%= link(raw("<i class=\"fa fa-heart\"></i>"), to: tweet_favorite_path(@conn, :create, @tweet.id), class: "favorite", method: "create") %>
     <% end %>
+
+    <%= if user_profile(@conn) && @tweet.retweet_id === nil do %>
+      <%= link(raw("<i class=\"fa fa-trash\"></i>"), to: tweet_path(@conn, :delete, @tweet.id), class: "pull-right", method: "delete") %>
+    <% end %>
   </div>
 </div>

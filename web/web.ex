@@ -62,10 +62,6 @@ defmodule App.Web do
         u2 = current_user(conn)
         u1 && u2 && u1.id === u2.id
       end
-
-      def authenticated(conn) do
-        current_user(conn) != nil
-      end
     end
   end
 

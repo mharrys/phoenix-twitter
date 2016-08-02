@@ -12,4 +12,8 @@ defmodule App.SharedView do
     {:ok, dump} = Ecto.DateTime.dump(datetime)
     format_datetime(dump)
   end
+
+  def authenticated(conn) do
+    current_user(conn) != nil
+  end
 end

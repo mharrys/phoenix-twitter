@@ -39,7 +39,7 @@ defmodule App.UserController do
 
     # set new password? (optional)
     new_password = get_change changeset, :new_password
-    changeset = if String.length new_password  > 0 do
+    changeset = if String.length(new_password) > 0 do
       put_change(changeset, :password, new_password) |> User.with_password_hash
     else
       changeset

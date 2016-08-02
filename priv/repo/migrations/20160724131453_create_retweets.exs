@@ -3,8 +3,8 @@ defmodule App.Repo.Migrations.CreateRetweetsTable do
 
   def change do
     create table(:retweets) do
-      add :tweet_id, references(:tweets, on_delete: :nothing)
-      add :user_id, references(:users, on_delete: :nothing)
+      add :tweet_id, references(:tweets, on_delete: :delete_all)
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end

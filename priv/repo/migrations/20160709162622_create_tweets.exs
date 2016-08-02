@@ -4,7 +4,7 @@ defmodule App.Repo.Migrations.CreateTweet do
   def change do
     create table(:tweets) do
       add :text, :string, size: 140, null: false
-      add :user_id, references(:users, on_delete: :nothing)
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end

@@ -9,12 +9,8 @@ defmodule App.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", App do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
 
@@ -44,10 +40,7 @@ defmodule App.Router do
       post   "/retweet", RetweetController, :create
       delete "/retweet", RetweetController, :delete
     end
-  end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", App do
-  #   pipe_through :api
-  # end
+    get "/hashtag/:name", TagController, :show
+  end
 end

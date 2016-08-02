@@ -55,5 +55,10 @@
     </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script>
+      window.onload = function() {
+        require("web/static/js/app").App.run();
+      }
+    </script>
   </body>
 </html>

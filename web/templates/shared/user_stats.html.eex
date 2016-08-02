@@ -6,11 +6,11 @@
     </div>
     <div class="stats">
       <div class="header">Following</div>
-      <div class="content <%= if @active === "following" do %>active<% end %>"><a href="<%= user_follower_path(@conn, :following, @user.id) %>"><%= length(@user.following) %></a></div>
+      <div class="content <%= if @active === "following" do %>active<% end %>"><a href="<%= user_following_path(@conn, :index, @user.id) %>"><%= length(@user.following) %></a></div>
     </div>
     <div class="stats">
       <div class="header">Followers</div>
-      <div class="content <%= if @active === "followers" do %>active<% end %>"><a href="<%= user_follower_path(@conn, :followers, @user.id) %>"><%= length(@user.followers) %></a></div>
+      <div class="content <%= if @active === "followers" do %>active<% end %>"><a href="<%= user_follower_path(@conn, :index, @user.id) %>"><%= length(@user.followers) %></a></div>
     </div>
     <div class="stats">
       <div class="header">Favorites</div>

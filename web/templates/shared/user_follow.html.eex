@@ -1,0 +1,7 @@
+<%= if authenticated(@conn) && !user_profile(@conn) do %>
+  <%= if @user.follower_id do %>
+    <%= button("Unfollow", class: "btn btn-default", to: user_follower_path(@conn, :delete, @user.id), method: "delete") %>
+  <% else %>
+    <%= button("Follow", class: "btn btn-primary", to: user_follower_path(@conn, :create, @user.id), method: "post") %>
+  <% end %>
+<% end %>

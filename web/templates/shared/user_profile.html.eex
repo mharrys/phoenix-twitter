@@ -1,0 +1,6 @@
+<div class="area-no-click">
+  <h4><%= @user.name %></h4>
+  <%= render App.SharedView, "user_follow.html", conn: @conn, user: @user %>
+</div>
+
+<%= render App.SharedView, "user_stats.html", conn: @conn, user: @user, active: @active %>

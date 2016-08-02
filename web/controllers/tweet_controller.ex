@@ -10,7 +10,7 @@ defmodule App.TweetController do
 
   def index(conn, _param) do
     query = Tweet |> order_by([t], [desc: t.inserted_at])
-    query = case get_session(conn, :current_user) do
+    query = case get_session conn, :current_user do
       nil ->
         query
       current_user ->
@@ -27,8 +27,8 @@ defmodule App.TweetController do
     current_user = conn.assigns[:current_user]
     user = conn.assigns[:user]
     if user.id === current_user.id do
-      changeset = Tweet.changeset(%Tweet{user_id: current_user.id}, tweet_params)
-      case Repo.insert(changeset) do
+      changeset = Tweet.changeset %Tweet{user_id: current_user.id}, tweet_params
+      case Repo.insert changeset do
         {:ok, _tweet} ->
           conn
           |> put_flash(:info, "Successfully posted new tweet")

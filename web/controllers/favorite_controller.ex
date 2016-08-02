@@ -14,7 +14,7 @@ defmodule App.FavoriteController do
     |> order_by([f], [desc: f.inserted_at])
     |> where([f], f.user_id == ^user_id)
     |> join(:left, [f], t in assoc(f, :tweet))
-    query = case get_session(conn, :current_user) do
+    query = case get_session conn, :current_user do
       nil ->
         query
         |> select([f, t], t)
@@ -32,7 +32,7 @@ defmodule App.FavoriteController do
     current_user = conn.assigns[:current_user]
     tweet = Repo.get! Tweet, tweet_id
     params = %{user_id: current_user.id, tweet_id: tweet.id}
-    case Repo.insert(Favorite.changeset(%Favorite{}, params)) do
+    case Repo.insert Favorite.changeset(%Favorite{}, params) do
       {:ok, _favorite} ->
         conn
         |> put_flash(:info, "Tweet added to your favorites")

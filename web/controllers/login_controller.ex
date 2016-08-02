@@ -10,7 +10,7 @@ defmodule App.LoginController do
   end
 
   def login(conn, %{"login" => params}) do
-    case authenticate(params["login"], params["password"]) do
+    case authenticate params["login"], params["password"] do
       {:ok, user} ->
         conn
         |> put_session(:current_user, %{id: user.id, login: user.login, name: user.name})
@@ -24,11 +24,11 @@ defmodule App.LoginController do
   end
 
   defp authenticate(login, password) do
-    case Repo.get_by(User, login: login) do
+    case Repo.get_by User, login: login do
       nil  ->
         :error
       user ->
-        if User.validate_password(password, user.password_hash) do
+        if User.validate_password password, user.password_hash do
           {:ok, user}
         else
           :error

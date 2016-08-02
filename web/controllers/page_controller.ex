@@ -10,7 +10,7 @@ defmodule App.PageController do
   @num_users  5
 
   def index(conn, _params) do
-    tweets = case get_session(conn, :current_user) do
+    tweets = case get_session conn, :current_user do
       nil ->
         Repo.all Tweet
         |> order_by([t], [desc: t.inserted_at])

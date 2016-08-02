@@ -24,9 +24,9 @@ defmodule App.FollowerController do
     user = conn.assigns[:user]
     current_user = conn.assigns[:current_user]
     follower = %Follower{user_id: user.id, follower_id: current_user.id}
-    case Repo.insert(Follower.changeset(follower, %{})) do
+    case Repo.insert Follower.changeset(follower, %{}) do
       {:ok, _follower} ->
-        redirect(conn, to: user_follower_path(conn, :following, current_user.id))
+        redirect conn, to: user_follower_path(conn, :following, current_user.id)
       {:error, _changeset} ->
         conn
         |> put_flash(:error, "Unable to follow this user")

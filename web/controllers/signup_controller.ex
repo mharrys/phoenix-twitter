@@ -12,7 +12,7 @@ defmodule App.SignupController do
 
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params) |> User.with_password_hash
-    case Repo.insert(changeset) do
+    case Repo.insert changeset do
       {:ok, user} ->
         conn
         |> put_session(:current_user, %{id: user.id, login: user.login, name: user.name})

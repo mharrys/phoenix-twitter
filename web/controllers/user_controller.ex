@@ -45,6 +45,16 @@ defmodule App.UserController do
       changeset
     end
 
+    photo = user_params["photo"]
+    changeset = if photo do
+      name = "profile_picture_" <> id
+      dst = Path.join([:code.priv_dir(:app), "static", "images", name])
+      File.cp! photo.path, dst
+      put_change changeset, :profile_picture, name
+    else
+      changeset
+    end
+
     case Repo.update changeset do
       {:ok, user} ->
         conn

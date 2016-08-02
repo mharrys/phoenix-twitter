@@ -3,6 +3,8 @@ defmodule App.SignupController do
 
   alias App.User
 
+  import Ecto.Changeset
+
   plug App.RedirectAuthenticated
 
   def index(conn, _params) do
@@ -12,6 +14,7 @@ defmodule App.SignupController do
 
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params) |> User.with_password_hash
+    changeset = put_change(changeset, :profile_picture, "default_profile.png")
     case Repo.insert changeset do
       {:ok, user} ->
         conn

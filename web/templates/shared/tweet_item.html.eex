@@ -1,35 +1,42 @@
 <div class="area">
-  <%= if assigns[:user] && @tweet.retweet_id do %>
-    <div class="small-text">
-      <%= @user.name %> retweeted
+  <div class="media">
+    <div class="media-left">
+      <img class="profile-picture" src="<%= static_path(@conn, "/images/" <> @tweet.user.profile_picture) %>" width="45" height="45">
     </div>
-  <% end %>
+    <div class="media-body">
+      <%= if assigns[:user] && @tweet.retweet_id do %>
+        <div class="small-text">
+          <%= @user.name %> retweeted
+        </div>
+      <% end %>
 
-  <div class="meta">
-    <span class="name"><a href="<%= user_path(@conn, :show, @tweet.user.id) %>"><%= @tweet.user.name %></a></span>
-    <span class="small-text">@<%= @tweet.user.login %></span>
-    <span class="small-text"><%= format_datetime(@tweet.inserted_at) %></span>
-  </div>
+      <div class="meta">
+        <span class="name"><a href="<%= user_path(@conn, :show, @tweet.user.id) %>"><%= @tweet.user.name %></a></span>
+        <span class="small-text">@<%= @tweet.user.login %></span>
+        <span class="small-text"><%= format_datetime(@tweet.inserted_at) %></span>
+      </div>
 
-  <div class="text">
-    <%= @tweet.text %>
-  </div>
+      <div class="text">
+        <%= @tweet.text %>
+      </div>
 
-  <div class="action">
-    <%= if @tweet.current_user_retweet_id do %>
-      <%= link(raw("<i class=\"fa fa-retweet\"></i>"), to: tweet_retweet_path(@conn, :delete, @tweet.id), class: "retweeted", method: "delete") %>
-    <% else %>
-      <%= link(raw("<i class=\"fa fa-retweet\"></i>"), to: tweet_retweet_path(@conn, :create, @tweet.id), class: "retweet", method: "create") %>
-    <% end %>
+      <div class="action">
+        <%= if @tweet.current_user_retweet_id do %>
+          <%= link(raw("<i class=\"fa fa-retweet\"></i>"), to: tweet_retweet_path(@conn, :delete, @tweet.id), class: "retweeted", method: "delete") %>
+        <% else %>
+          <%= link(raw("<i class=\"fa fa-retweet\"></i>"), to: tweet_retweet_path(@conn, :create, @tweet.id), class: "retweet", method: "create") %>
+        <% end %>
 
-    <%= if @tweet.current_user_favorite_id do %>
-      <%= link(raw("<i class=\"fa fa-heart\"></i>"), to: tweet_favorite_path(@conn, :delete, @tweet.id), class: "favorited", method: "delete") %>
-    <% else %>
-      <%= link(raw("<i class=\"fa fa-heart\"></i>"), to: tweet_favorite_path(@conn, :create, @tweet.id), class: "favorite", method: "create") %>
-    <% end %>
+        <%= if @tweet.current_user_favorite_id do %>
+          <%= link(raw("<i class=\"fa fa-heart\"></i>"), to: tweet_favorite_path(@conn, :delete, @tweet.id), class: "favorited", method: "delete") %>
+        <% else %>
+          <%= link(raw("<i class=\"fa fa-heart\"></i>"), to: tweet_favorite_path(@conn, :create, @tweet.id), class: "favorite", method: "create") %>
+        <% end %>
 
-    <%= if user_profile(@conn) && @tweet.retweet_id === nil do %>
-      <%= link(raw("<i class=\"fa fa-trash\"></i>"), to: tweet_path(@conn, :delete, @tweet.id), class: "pull-right", method: "delete") %>
-    <% end %>
+        <%= if user_profile(@conn) && @tweet.retweet_id === nil do %>
+          <%= link(raw("<i class=\"fa fa-trash\"></i>"), to: tweet_path(@conn, :delete, @tweet.id), class: "pull-right", method: "delete") %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

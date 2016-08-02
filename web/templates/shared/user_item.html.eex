@@ -1,5 +1,6 @@
 <div class="area-no-click">
   <div class="meta">
+    <img class="profile-picture" src="<%= static_path(@conn, "/images/" <> @user.profile_picture) %>" width="23" height="23">
     <span class="name"><a href="<%= user_path(@conn, :show, @user.id) %>"><%= @user.name %></a></span>
     <span class="small-text">@<%= @user.login %></span>
   </div>

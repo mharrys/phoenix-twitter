@@ -7,6 +7,7 @@ defmodule App.Repo.Migrations.CreateUser do
       add :password_hash, :string, null: false
       add :name, :string, null: false
       add :email, :string
+      add :profile_picture, :string, null: false
 
       timestamps()
     end

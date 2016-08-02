@@ -1,6 +1,9 @@
 <div class="area-no-click">
-  <h4><%= @user.name %></h4>
-  <%= render App.SharedView, "user_follow.html", conn: @conn, user: @user %>
+  <div class="clearfix">
+    <img class="profile-picture" src="<%= static_path(@conn, "/images/" <> @user.profile_picture) %>" width="100" height="100">
+    <h4><%= @user.name %></h4>
+    <%= render App.SharedView, "user_follow.html", conn: @conn, user: @user %>
+  </div>
 </div>
 
 <%= render App.SharedView, "user_stats.html", conn: @conn, user: @user, active: @active %>

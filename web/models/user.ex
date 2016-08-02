@@ -10,6 +10,7 @@ defmodule App.User do
     field :password_hash, :string
     field :name, :string
     field :email, :string
+    field :profile_picture, :string
     field :follower_id, :integer, virtual: true
     has_many :tweets, App.Tweet
     has_many :followers, App.Follower, foreign_key: :user_id
@@ -25,7 +26,7 @@ defmodule App.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:login, :password, :password_hash, :new_password, :name, :email])
+    |> cast(params, [:login, :password, :password_hash, :new_password, :name, :email, :profile_picture])
     |> validate_required([:login, :password, :name])
     |> validate_length(:login, max: 15)
     |> validate_length(:name, max: 20)

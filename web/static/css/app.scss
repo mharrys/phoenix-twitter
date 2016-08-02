@@ -127,3 +127,19 @@ body {
     background-color: $area-bg-color;
   }
 }
+
+.profile-picture {
+  @extend .pull-left;
+  margin-right: 12px;
+  border: 1px solid $area-border-color;
+}
+
+.user-follow {
+  @extend .pull-right;
+  margin-top: 40px;
+  margin-left: 12px;
+}
+
+.media-left {
+  padding-right: 0px;
+}

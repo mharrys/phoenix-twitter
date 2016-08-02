@@ -1,4 +1,4 @@
-<%= form_for @changeset, @action, fn f -> %>
+<%= form_for @changeset, @action, [multipart: true], fn f -> %>
   <div class="form-group">
     <%= label f, :name, class: "control-label" %>
     <%= text_input f, :name, class: "form-control" %>
@@ -9,6 +9,12 @@
     <label class="control-label">Email (Optional)</label>
     <%= text_input f, :email, class: "form-control" %>
     <%= error_tag f, :email %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :profile_picture, class: "control-label" %>
+    <%= file_input f, :photo, class: "form-control" %>
+    <%= error_tag f, :profile_picture %>
   </div>
 
   <div class="form-group">

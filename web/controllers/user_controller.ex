@@ -14,7 +14,7 @@ defmodule App.UserController do
     render conn, "index.html", users: users
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, _params) do
     user = conn.assigns[:user]
     changeset = Tweet.changeset %Tweet{}
     render conn, "show.html", user: user, changeset: changeset

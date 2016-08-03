@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-4">
-    <%= render App.SharedView, "user_profile.html", conn: @conn, user: @user, active: "favorites" %>
+    <%= render App.SharedView, "user_info.html", conn: @conn, user: @user, active: "favorites" %>
   </div>
 
   <div class="col-lg-8">

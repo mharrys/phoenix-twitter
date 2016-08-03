@@ -131,3 +131,10 @@ body {
 .media-left {
   padding-right: 0px;
 }
+
+.fa-retweeted {
+  color: #fff;
+  background: $retweet-hover-color;
+  padding: 1px;
+  border-radius: 2px;
+}

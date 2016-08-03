@@ -30,7 +30,7 @@ body {
   margin-right: 10px;
 
   .header {
-    @extend .small;
+    font-size: $font-size-small;
     text-align: center;
     text-transform: uppercase;
   }

@@ -78,7 +78,7 @@ defmodule App.TweetController do
   end
 
   defp extract_tags(text) do
-    Regex.scan(~r/\S*#(?<tag>:\[[^\]]|\S+)/, text, capture: :all_names) |> List.flatten
+    Regex.scan(~r/\S*#(?<tag>:\[[^\]]|[a-zA-Z0-9]+)/, text, capture: :all_names) |> List.flatten
   end
 
   defp create_or_get_tag(name) do

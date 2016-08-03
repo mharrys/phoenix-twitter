@@ -1,8 +1,6 @@
 defmodule App.FollowingController do
   use App.Web, :controller
 
-  alias App.Follower
-
   plug App.SetUser
 
   def index(conn, _param) do

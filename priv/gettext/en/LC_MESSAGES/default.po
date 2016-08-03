@@ -1,0 +1,253 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+#: web/templates/error/401.html.eex:4
+msgid "401 Unauthorized"
+msgstr ""
+
+#: web/templates/error/404.html.eex:4
+msgid "404 Not Found"
+msgstr ""
+
+#: web/templates/error/500.html.eex:4
+msgid "500 Internal Server Error"
+msgstr ""
+
+#: web/views/shared_view.ex:4
+msgid "Apr"
+msgstr ""
+
+#: web/views/shared_view.ex:5
+msgid "Aug"
+msgstr ""
+
+#: web/templates/user/form.html.eex:21
+msgid "Current password"
+msgstr ""
+
+#: web/views/shared_view.ex:5
+msgid "Dec"
+msgstr ""
+
+#: web/templates/signup/form.html.eex:27 web/templates/user/form.html.eex:9
+msgid "Email (Optional)"
+msgstr ""
+
+#: web/templates/favorite/index.html.eex:7
+#: web/templates/shared/user_stats.html.eex:16
+msgid "Favorites"
+msgstr ""
+
+#: web/views/shared_view.ex:4
+msgid "Feb"
+msgstr ""
+
+#: web/templates/shared/user_follow.html.eex:5
+msgid "Follow"
+msgstr ""
+
+#: web/templates/follower/index.html.eex:7
+#: web/templates/shared/user_stats.html.eex:12
+msgid "Followers"
+msgstr ""
+
+#: web/templates/following/index.html.eex:7
+#: web/templates/shared/user_stats.html.eex:8
+msgid "Following"
+msgstr ""
+
+#: web/templates/error/500.html.eex:7
+msgid "It's not you, it's me that have a problem."
+msgstr ""
+
+#: web/views/shared_view.ex:4
+msgid "Jan"
+msgstr ""
+
+#: web/templates/signup/index.html.eex:3
+msgid "Join Phoenix-Twitter today!"
+msgstr ""
+
+#: web/views/shared_view.ex:5
+msgid "Jul"
+msgstr ""
+
+#: web/views/shared_view.ex:4
+msgid "Jun"
+msgstr ""
+
+#: web/templates/page/index.html.eex:10
+msgid "Latest Tweets"
+msgstr ""
+
+#: web/templates/page/index.html.eex:3
+msgid "Latest Users"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:36 web/templates/login/form.html.eex:3
+#: web/templates/login/form.html.eex:15 web/templates/signup/form.html.eex:3
+msgid "Login"
+msgstr ""
+
+#: web/templates/login/index.html.eex:3
+msgid "Login to your account"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:33
+msgid "Logout"
+msgstr ""
+
+#: web/views/shared_view.ex:4
+msgid "Mar"
+msgstr ""
+
+#: web/views/shared_view.ex:4
+msgid "May"
+msgstr ""
+
+#: web/templates/signup/form.html.eex:21 web/templates/user/form.html.eex:3
+msgid "Name"
+msgstr ""
+
+#: web/templates/user/form.html.eex:27
+msgid "New password"
+msgstr ""
+
+#: web/templates/user/form.html.eex:33
+msgid "New password confirmation"
+msgstr ""
+
+#: web/views/shared_view.ex:5
+msgid "Nov"
+msgstr ""
+
+#: web/views/shared_view.ex:5
+msgid "Oct"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:48
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr ""
+
+#: web/templates/login/form.html.eex:9 web/templates/signup/form.html.eex:9
+msgid "Password"
+msgstr ""
+
+#: web/templates/signup/form.html.eex:15
+msgid "Password confirmation"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:31
+msgid "Profile"
+msgstr ""
+
+#: web/templates/user/form.html.eex:15
+msgid "Profile picture"
+msgstr ""
+
+#: web/views/shared_view.ex:5
+msgid "Sep"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:32 web/templates/user/edit.html.eex:4
+msgid "Settings"
+msgstr ""
+
+#: web/controllers/user_controller.ex:61
+msgid "Settings updated successfully"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:35 web/templates/signup/form.html.eex:33
+msgid "Signup"
+msgstr ""
+
+#: web/controllers/signup_controller.ex:22
+msgid "Successfully created user account"
+msgstr ""
+
+#: web/controllers/tweet_controller.ex:60
+msgid "Successfully deleted tweet"
+msgstr ""
+
+#: web/controllers/login_controller.ex:29
+msgid "Successfully logged in."
+msgstr ""
+
+#: web/controllers/tweet_controller.ex:38
+msgid "Successfully posted new tweet"
+msgstr ""
+
+#: web/templates/tweet/form.html.eex:8
+msgid "Tweet"
+msgstr ""
+
+#: web/controllers/favorite_controller.ex:38
+msgid "Tweet added to your favorites"
+msgstr ""
+
+#: web/controllers/favorite_controller.ex:55
+msgid "Tweet removed from your favorites"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:29
+#: web/templates/shared/user_stats.html.eex:4
+#: web/templates/tweet/index.html.eex:3 web/templates/user/show.html.eex:7
+msgid "Tweets"
+msgstr ""
+
+#: web/controllers/favorite_controller.ex:42
+msgid "Unable to favorite tweet"
+msgstr ""
+
+#: web/controllers/follower_controller.ex:26
+msgid "Unable to follow this user"
+msgstr ""
+
+#: web/templates/shared/user_follow.html.eex:3
+msgid "Unfollow"
+msgstr ""
+
+#: web/controllers/login_controller.ex:33
+msgid "Unknown login or wrong password"
+msgstr ""
+
+#: web/templates/user/form.html.eex:39
+msgid "Update"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:28 web/templates/user/index.html.eex:3
+msgid "Users"
+msgstr ""
+
+#: web/templates/error/404.html.eex:7
+msgid "Whatever you were looking for, it's not here (anymore)."
+msgstr ""
+
+#: web/controllers/follower_controller.ex:48
+msgid "You are already following this user"
+msgstr ""
+
+#: web/controllers/retweet_controller.ex:14
+msgid "You are not allowed to retweet your own tweets"
+msgstr ""
+
+#: web/controllers/follower_controller.ex:61
+msgid "You can't follow yourself, silly"
+msgstr ""
+
+#: web/templates/shared/tweet_item.html.eex:9
+msgid "retweeted"
+msgstr ""
+
+#: web/controllers/user_controller.ex:36
+msgid "wrong password"
+msgstr ""

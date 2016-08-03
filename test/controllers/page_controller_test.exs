@@ -2,7 +2,9 @@ defmodule App.PageControllerTest do
   use App.ConnCase
 
   test "GET /", %{conn: conn} do
-    conn = get conn, "/"
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+    content = conn |> get("/") |> html_response(200)
+    Enum.map(["Latest Users", "Latest Tweets"], fn item ->
+      assert content =~ item
+    end)
   end
 end

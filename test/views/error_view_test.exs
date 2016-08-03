@@ -1,21 +1,25 @@
 defmodule App.ErrorViewTest do
   use App.ConnCase, async: true
 
-  # Bring render/3 and render_to_string/3 for testing custom views
   import Phoenix.View
 
+  test "renders 401.html" do
+    content = render_to_string App.ErrorView, "401.html", []
+    assert content =~ "401"
+  end
+
   test "renders 404.html" do
-    assert render_to_string(App.ErrorView, "404.html", []) ==
-           "Page not found"
+    content = render_to_string App.ErrorView, "404.html", []
+    assert content =~ "404"
   end
 
   test "render 500.html" do
-    assert render_to_string(App.ErrorView, "500.html", []) ==
-           "Internal server error"
+    content = render_to_string App.ErrorView, "500.html", []
+    assert content =~ "500"
   end
 
   test "render any other" do
-    assert render_to_string(App.ErrorView, "505.html", []) ==
-           "Internal server error"
+    content = render_to_string App.ErrorView, "505.html", []
+    assert content =~ "500"
   end
 end

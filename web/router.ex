@@ -18,7 +18,8 @@ defmodule App.Router do
     post "/signup", SignupController, :create
 
     get  "/login", LoginController, :index
-    post "/login", LoginController, :login
+    get  "/login/:login", LoginController, :show
+    post "/login", LoginController, :create
 
     get "/logout", LogoutController, :index
 

@@ -3,14 +3,26 @@ defmodule App.LoginController do
 
   alias App.User
 
-  plug App.RedirectAuthenticated
+  plug App.RedirectAuthenticated when action in [:index, :create]
 
   def index(conn, _params) do
     render conn, "index.html"
   end
 
-  def login(conn, %{"login" => params}) do
-    case authenticate params["login"], params["password"] do
+  def show(conn, %{"login" => login}) do
+    case Repo.get_by User, login: login do
+      nil  ->
+        conn
+        |> put_status(:not_found)
+        |> render(App.ErrorView, "404.html")
+        |> halt
+      user ->
+        redirect conn, to: user_path(conn, :show, user.id)
+    end
+  end
+
+  def create(conn, %{"login" => login_params}) do
+    case authenticate login_params["login"], login_params["password"] do
       {:ok, user} ->
         conn
         |> put_session(:current_user, %{id: user.id, login: user.login, name: user.name})

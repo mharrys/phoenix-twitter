@@ -12,6 +12,7 @@ defmodule App.TagController do
     |> where([tag], ilike(tag.name, ^name))
     |> join(:left, [tag], tagging in Tagging, tagging.tag_id == tag.id)
     |> join(:left, [_, tagging], tweet in Tweet, tweet.id == tagging.tweet_id)
+    |> order_by([_, _, tweet], [desc: tweet.inserted_at])
     query = case get_session conn, :current_user do
       nil ->
         query

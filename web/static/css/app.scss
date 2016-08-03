@@ -114,18 +114,6 @@ body {
       display: inline;
     }
   }
-
-  &:hover {
-    background-color: $background-color;
-  }
-}
-
-.area-no-click {
-  @extend .area;
-
-  &:hover {
-    background-color: $area-bg-color;
-  }
 }
 
 .profile-picture {

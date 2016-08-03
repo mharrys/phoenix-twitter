@@ -4,7 +4,7 @@
   </div>
 
   <div class="col-lg-8">
-    <div class="area-no-click"><h4>Followers</h4></div>
+    <div class="area"><h4>Followers</h4></div>
     <%= for f <- @followers do %>
       <%= render App.SharedView, "user_item.html", conn: @conn, user: f.follower %>
     <% end %>

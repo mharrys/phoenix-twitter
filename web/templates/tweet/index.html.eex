@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="area-no-click"><h4>Tweets</h4></div>
+    <div class="area"><h4>Tweets</h4></div>
     <%= for tweet <- @tweets do %>
       <%= render App.SharedView, "tweet_item.html", conn: @conn, tweet: tweet %>
     <% end %>

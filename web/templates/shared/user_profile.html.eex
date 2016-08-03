@@ -1,4 +1,4 @@
-<div class="area-no-click">
+<div class="area">
   <div class="clearfix">
     <img class="profile-picture" src="<%= static_path(@conn, "/images/" <> @user.profile_picture) %>" width="100" height="100">
     <h4><%= @user.name %></h4>

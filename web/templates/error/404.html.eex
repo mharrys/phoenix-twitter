@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="area-no-click">
+    <div class="area">
       <h4>404 Not Found</h4>
     </div>
-    <div class="area-no-click">
+    <div class="area">
       Whatever you were looking for, it's not here (anymore).
     </div>
   </div>

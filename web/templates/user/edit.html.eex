@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="area-no-click">
+    <div class="area">
       <h4>Settings</h4>
     </div>
-    <div class="area-no-click">
+    <div class="area">
       <%= render "form.html", changeset: @changeset, action: user_path(@conn, :update, @user) %>
     </div>
   </div>

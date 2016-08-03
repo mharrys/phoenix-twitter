@@ -1,0 +1,253 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: sv\n"
+
+#: web/templates/error/401.html.eex:4
+msgid "401 Unauthorized"
+msgstr "401 Obehörig"
+
+#: web/templates/error/404.html.eex:4
+msgid "404 Not Found"
+msgstr "404 Ej Hittad"
+
+#: web/templates/error/500.html.eex:4
+msgid "500 Internal Server Error"
+msgstr "500 Internt Serverfel"
+
+#: web/views/shared_view.ex:4
+msgid "Apr"
+msgstr "Apr"
+
+#: web/views/shared_view.ex:5
+msgid "Aug"
+msgstr "Aug"
+
+#: web/templates/user/form.html.eex:21
+msgid "Current password"
+msgstr "Nuvarande lösenord"
+
+#: web/views/shared_view.ex:5
+msgid "Dec"
+msgstr "Dec"
+
+#: web/templates/signup/form.html.eex:27 web/templates/user/form.html.eex:9
+msgid "Email (Optional)"
+msgstr "Epost (Valfritt)"
+
+#: web/templates/favorite/index.html.eex:7
+#: web/templates/shared/user_stats.html.eex:16
+msgid "Favorites"
+msgstr "Favoriter"
+
+#: web/views/shared_view.ex:4
+msgid "Feb"
+msgstr "Feb"
+
+#: web/templates/shared/user_follow.html.eex:5
+msgid "Follow"
+msgstr "Följ"
+
+#: web/templates/follower/index.html.eex:7
+#: web/templates/shared/user_stats.html.eex:12
+msgid "Followers"
+msgstr "Följare"
+
+#: web/templates/following/index.html.eex:7
+#: web/templates/shared/user_stats.html.eex:8
+msgid "Following"
+msgstr "Följer"
+
+#: web/templates/error/500.html.eex:7
+msgid "It's not you, it's me that have a problem."
+msgstr "Det är inte du, det är jag som har problem."
+
+#: web/views/shared_view.ex:4
+msgid "Jan"
+msgstr "Jan"
+
+#: web/templates/signup/index.html.eex:3
+msgid "Join Phoenix-Twitter today!"
+msgstr "Gå med Phoenix-Twitter idag!"
+
+#: web/views/shared_view.ex:5
+msgid "Jul"
+msgstr "Jul"
+
+#: web/views/shared_view.ex:4
+msgid "Jun"
+msgstr "Jun"
+
+#: web/templates/page/index.html.eex:10
+msgid "Latest Tweets"
+msgstr "Senaste Kvittret"
+
+#: web/templates/page/index.html.eex:3
+msgid "Latest Users"
+msgstr "Senaste Användarna"
+
+#: web/templates/layout/app.html.eex:36 web/templates/login/form.html.eex:3
+#: web/templates/login/form.html.eex:15 web/templates/signup/form.html.eex:3
+msgid "Login"
+msgstr "Logga in"
+
+#: web/templates/login/index.html.eex:3
+msgid "Login to your account"
+msgstr "Logga in till ditt konto"
+
+#: web/templates/layout/app.html.eex:33
+msgid "Logout"
+msgstr "Logga ut"
+
+#: web/views/shared_view.ex:4
+msgid "Mar"
+msgstr "Mar"
+
+#: web/views/shared_view.ex:4
+msgid "May"
+msgstr "Maj"
+
+#: web/templates/signup/form.html.eex:21 web/templates/user/form.html.eex:3
+msgid "Name"
+msgstr "Namn"
+
+#: web/templates/user/form.html.eex:27
+msgid "New password"
+msgstr "Nytt lösenord"
+
+#: web/templates/user/form.html.eex:33
+msgid "New password confirmation"
+msgstr "Bekräfta nytt lösenord"
+
+#: web/views/shared_view.ex:5
+msgid "Nov"
+msgstr "Nov"
+
+#: web/views/shared_view.ex:5
+msgid "Oct"
+msgstr "Okt"
+
+#: web/templates/layout/app.html.eex:48
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr "Oj oj, något gick galet! Var god och kolla på felen här under."
+
+#: web/templates/login/form.html.eex:9 web/templates/signup/form.html.eex:9
+msgid "Password"
+msgstr "Lösenord"
+
+#: web/templates/signup/form.html.eex:15
+msgid "Password confirmation"
+msgstr "Bekräfta lösenord"
+
+#: web/templates/layout/app.html.eex:31
+msgid "Profile"
+msgstr "Profil"
+
+#: web/templates/user/form.html.eex:15
+msgid "Profile picture"
+msgstr "Profilbild"
+
+#: web/views/shared_view.ex:5
+msgid "Sep"
+msgstr "Sep"
+
+#: web/templates/layout/app.html.eex:32 web/templates/user/edit.html.eex:4
+msgid "Settings"
+msgstr "Inställningar"
+
+#: web/controllers/user_controller.ex:61
+msgid "Settings updated successfully"
+msgstr "Lyckades att uppdatera inställningarna"
+
+#: web/templates/layout/app.html.eex:35 web/templates/signup/form.html.eex:33
+msgid "Signup"
+msgstr "Registrera"
+
+#: web/controllers/signup_controller.ex:22
+msgid "Successfully created user account"
+msgstr "Lyckades att skapa användarkonto"
+
+#: web/controllers/tweet_controller.ex:60
+msgid "Successfully deleted tweet"
+msgstr "Lyckades ta bort kvitter"
+
+#: web/controllers/login_controller.ex:29
+msgid "Successfully logged in."
+msgstr "Lyckades logga in."
+
+#: web/controllers/tweet_controller.ex:38
+msgid "Successfully posted new tweet"
+msgstr "Lyckades posta nytt kvitter"
+
+#: web/templates/tweet/form.html.eex:8
+msgid "Tweet"
+msgstr "Kvitter"
+
+#: web/controllers/favorite_controller.ex:38
+msgid "Tweet added to your favorites"
+msgstr "Kvitter är tillagt till dina favoriter"
+
+#: web/controllers/favorite_controller.ex:55
+msgid "Tweet removed from your favorites"
+msgstr "Kvitter borttaget från dina favoriter"
+
+#: web/templates/layout/app.html.eex:29
+#: web/templates/shared/user_stats.html.eex:4
+#: web/templates/tweet/index.html.eex:3 web/templates/user/show.html.eex:7
+msgid "Tweets"
+msgstr "Kvittret"
+
+#: web/controllers/favorite_controller.ex:42
+msgid "Unable to favorite tweet"
+msgstr "Kan inte favorisera kvitter"
+
+#: web/controllers/follower_controller.ex:26
+msgid "Unable to follow this user"
+msgstr "Kan inte följa denna användare"
+
+#: web/templates/shared/user_follow.html.eex:3
+msgid "Unfollow"
+msgstr "Sluta följ"
+
+#: web/controllers/login_controller.ex:33
+msgid "Unknown login or wrong password"
+msgstr "Okänt användarnamn eller fel lösenord"
+
+#: web/templates/user/form.html.eex:39
+msgid "Update"
+msgstr "Uppdatera"
+
+#: web/templates/layout/app.html.eex:28 web/templates/user/index.html.eex:3
+msgid "Users"
+msgstr "Användare"
+
+#: web/templates/error/404.html.eex:7
+msgid "Whatever you were looking for, it's not here (anymore)."
+msgstr "Vad du än letade efter, så är det inte här (längre)"
+
+#: web/controllers/follower_controller.ex:48
+msgid "You are already following this user"
+msgstr "Du följer redan denna användaren"
+
+#: web/controllers/retweet_controller.ex:14
+msgid "You are not allowed to retweet your own tweets"
+msgstr "Du får inte återkvittra ditt egna kvitter"
+
+#: web/controllers/follower_controller.ex:61
+msgid "You can't follow yourself, silly"
+msgstr "Du får inte följa dig själv, dumsnut"
+
+#: web/templates/shared/tweet_item.html.eex:9
+msgid "retweeted"
+msgstr "återkvittrade"
+
+#: web/controllers/user_controller.ex:36
+msgid "wrong password"
+msgstr "fel lösenord"

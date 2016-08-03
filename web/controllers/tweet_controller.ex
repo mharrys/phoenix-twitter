@@ -82,7 +82,7 @@ defmodule App.TweetController do
   end
 
   defp create_or_get_tag(name) do
-    case Repo.one from t in Tag, where: ilike(t.name,^name) do
+    case Repo.one from t in Tag, where: ilike(t.name, ^name) do
       nil ->
         tag_param = %{name: name}
         tag_changeset = Tag.changeset(%Tag{}, tag_param)

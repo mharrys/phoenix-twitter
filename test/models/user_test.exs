@@ -8,7 +8,8 @@ defmodule App.UserTest do
     password: "password",
     password_hash: "$2b$12$HqVSS6vSstuedGr49dgnMe.OuC1xVTXBq7qWk2NavwUuzxRUALuAS",
     name: "Joe Smith",
-    email: "joe@example.com"
+    email: "joe@example.com",
+    profile_picture: "default_profile.png"
   }
   @invalid_attrs %{}
 

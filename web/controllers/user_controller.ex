@@ -33,7 +33,7 @@ defmodule App.UserController do
     # authorize user update
     password = get_change(changeset, :password)
     unless User.validate_password password, user.password_hash do
-      new_changeset = %{changeset | action: :update } |> add_error(:password, "wrong password")
+      new_changeset = %{changeset | action: :update } |> add_error(:password, gettext "wrong password")
       render conn, "edit.html", user: user, changeset: new_changeset
     end
 
@@ -58,7 +58,7 @@ defmodule App.UserController do
     case Repo.update changeset do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "Settings updated successfully")
+        |> put_flash(:info, gettext "Settings updated successfully")
         |> redirect(to: user_path(conn, :show, user))
       {:error, changeset} ->
         render conn, "edit.html", user: user, changeset: changeset

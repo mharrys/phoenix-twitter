@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="area"><h4>Login to your account</h4></div>
+    <div class="area"><h4><%= gettext "Login to your account" %></h4></div>
     <div class="area"><%= render "form.html", conn: @conn, action: login_path(@conn, :create), option: [as: :login] %></div>
   </div>
 </div>

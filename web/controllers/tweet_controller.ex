@@ -35,7 +35,7 @@ defmodule App.TweetController do
           {:ok, tweet} ->
             create_taggings(tweet)
             conn
-            |> put_flash(:info, "Successfully posted new tweet")
+            |> put_flash(:info, gettext "Successfully posted new tweet")
             |> redirect(to: user_path(conn, :show, user))
           {:error, tweet_changeset} ->
             render conn, App.UserView, "show.html", user: user, changeset: tweet_changeset
@@ -57,7 +57,7 @@ defmodule App.TweetController do
         delete_taggings(tweet)
       end
       conn
-      |> put_flash(:info, "Successfully deleted tweet")
+      |> put_flash(:info, gettext "Successfully deleted tweet")
       |> redirect(to: user_path(conn, :show, current_user.id))
     else
       conn

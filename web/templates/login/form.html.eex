@@ -1,17 +1,17 @@
 <%= form_for @conn, @action, @option, fn f -> %>
   <div class="form-group">
-    <%= label f, :login, class: "control-label" %>
+    <label class="control-label"><%= gettext "Login" %></label>
     <%= text_input f, :login, class: "form-control" %>
     <%= error_tag f, :login %>
   </div>
 
   <div class="form-group">
-    <%= label f, :password, class: "control-label" %>
+    <label class="control-label"><%= gettext "Password" %></label>
     <%= password_input f, :password, class: "form-control" %>
     <%= error_tag f, :password %>
   </div>
 
   <div class="form-group">
-    <%= submit "Login", class: "btn btn-primary" %>
+    <%= submit (gettext "Login"), class: "btn btn-primary" %>
   </div>
 <% end %>

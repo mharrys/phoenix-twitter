@@ -4,7 +4,7 @@
   </div>
 
   <div class="col-lg-8">
-    <div class="area"><h4>Tweets</h4></div>
+    <div class="area"><h4><%= gettext "Tweets" %></h4></div>
     <%= if user_profile(@conn) do %>
       <div class="area">
         <%= render App.TweetView, "form.html", changeset: @changeset, action: user_tweet_path(@conn, :create, @user.id) %>

@@ -1,35 +1,35 @@
 <%= form_for @changeset, @action, fn f -> %>
   <div class="form-group">
-    <%= label f, :login, class: "control-label" %>
+    <label class="control-label"><%= gettext "Login" %></label>
     <%= text_input f, :login, class: "form-control" %>
     <%= error_tag f, :login %>
   </div>
 
   <div class="form-group">
-    <%= label f, :password, class: "control-label" %>
+    <label class="control-label"><%= gettext "Password" %></label>
     <%= password_input f, :password, class: "form-control" %>
     <%= error_tag f, :password %>
   </div>
 
   <div class="form-group">
-    <%= label f, :password_confirmation, class: "control-label" %>
+    <label class="control-label"><%= gettext "Password confirmation" %></label>
     <%= password_input f, :password_confirmation, class: "form-control" %>
     <%= error_tag f, :password_confirmation %>
   </div>
 
   <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
+    <label class="control-label"><%= gettext "Name" %></label>
     <%= text_input f, :name, class: "form-control" %>
     <%= error_tag f, :name %>
   </div>
 
   <div class="form-group">
-    <label class="control-label">Email (Optional)</label>
+    <label class="control-label"><%= gettext "Email (Optional)" %></label>
     <%= text_input f, :email, class: "form-control" %>
     <%= error_tag f, :email %>
   </div>
 
   <div class="form-group">
-    <%= submit "Signup", class: "btn btn-primary" %>
+    <%= submit gettext("Signup"), class: "btn btn-primary" %>
   </div>
 <% end %>

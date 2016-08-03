@@ -1,7 +1,7 @@
 <%= if authenticated(@conn) && !user_profile(@conn) do %>
   <%= if @user.follower_id do %>
-    <%= link("Unfollow", class: "user-follow", to: user_follower_path(@conn, :delete, @user.id), method: "delete") %>
+    <%= link(gettext("Unfollow"), class: "user-follow", to: user_follower_path(@conn, :delete, @user.id), method: "delete") %>
   <% else %>
-    <%= link("Follow", class: "user-follow", to: user_follower_path(@conn, :create, @user.id), method: "post") %>
+    <%= link(gettext("Follow"), class: "user-follow", to: user_follower_path(@conn, :create, @user.id), method: "post") %>
   <% end %>
 <% end %>

@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-lg-6">
-    <div class="area"><h4>Latest Users</h4></div>
+    <div class="area"><h4><%= gettext "Latest Users" %></h4></div>
     <%= for user <- @users do %>
       <%= render App.SharedView, "user_item.html", conn: @conn, user: user %>
     <% end %>
   </div>
 
   <div class="col-lg-6">
-    <div class="area"><h4>Latest Tweets</h4></div>
+    <div class="area"><h4><%= gettext "Latest Tweets" %></h4></div>
     <%= for tweet <- @tweets do %>
       <%= render App.SharedView, "tweet_item.html", conn: @conn, tweet: tweet %>
     <% end %>

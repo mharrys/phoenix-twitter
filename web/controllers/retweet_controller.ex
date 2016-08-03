@@ -11,7 +11,7 @@ defmodule App.RetweetController do
     tweet = Repo.get! Tweet, tweet_id
     if tweet.user_id === current_user.id do
       conn
-      |> put_flash(:error, "You are not allowed to retweet your own tweets")
+      |> put_flash(:error, gettext "You are not allowed to retweet your own tweets")
       |> redirect(to: user_path(conn, :show, current_user.id))
       |> halt
     else

@@ -26,11 +26,11 @@ defmodule App.LoginController do
       {:ok, user} ->
         conn
         |> put_session(:current_user, %{id: user.id, login: user.login, name: user.name})
-        |> put_flash(:info, "Successfully logged in.")
+        |> put_flash(:info, gettext "Successfully logged in.")
         |> redirect(to: user_path(conn, :show, user))
       :error ->
         conn
-        |> put_flash(:error, "Unknown login or wrong password")
+        |> put_flash(:error, gettext "Unknown login or wrong password")
         |> render("index.html")
     end
   end

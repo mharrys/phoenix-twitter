@@ -6,7 +6,7 @@
     <div class="media-body">
       <%= if assigns[:user] && @tweet.retweet_id do %>
         <div class="small-text">
-          <i class="fa fa-retweet fa-retweeted"></i> <%= @user.name %> retweeted
+          <i class="fa fa-retweet fa-retweeted"></i> <%= @user.name %> <%= gettext "retweeted" %>
         </div>
       <% end %>
 

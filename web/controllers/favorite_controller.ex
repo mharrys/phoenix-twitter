@@ -35,11 +35,11 @@ defmodule App.FavoriteController do
     case Repo.insert Favorite.changeset(%Favorite{}, params) do
       {:ok, _favorite} ->
         conn
-        |> put_flash(:info, "Tweet added to your favorites")
+        |> put_flash(:info, gettext "Tweet added to your favorites")
         |> redirect(to: user_favorite_path(conn, :index, current_user.id))
       {:error, _changeset} ->
         conn
-        |> put_flash(:error, "Unable to favorite tweet")
+        |> put_flash(:error, gettext "Unable to favorite tweet")
         |> redirect(to: user_path(conn, :show, tweet.user_id))
         |> halt
     end
@@ -52,7 +52,7 @@ defmodule App.FavoriteController do
     favorite = Repo.one! query
     Repo.delete! favorite
     conn
-    |> put_flash(:info, "Tweet removed from your favorites")
+    |> put_flash(:info, gettext "Tweet removed from your favorites")
     |> redirect(to: user_favorite_path(conn, :index, current_user.id))
   end
 end

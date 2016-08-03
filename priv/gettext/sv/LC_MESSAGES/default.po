@@ -202,7 +202,7 @@ msgstr "Kvitter borttaget från dina favoriter"
 #: web/templates/shared/user_stats.html.eex:4
 #: web/templates/tweet/index.html.eex:3 web/templates/user/show.html.eex:7
 msgid "Tweets"
-msgstr "Kvittret"
+msgstr "Kvitter"
 
 #: web/controllers/favorite_controller.ex:42
 msgid "Unable to favorite tweet"

@@ -1,10 +1,19 @@
 defmodule App.SignupControllerTest do
-  use App.ConnCase
+  use App.ConnCase, async: true
 
-  test "form fields", %{conn: conn} do
-    content = conn |> get("/signup") |> html_response(200)
-    Enum.map(["Login", "Password", "Password confirm", "Name", "Email (Optional)"], fn item ->
-      assert content =~ item
-    end)
+  alias App.Repo
+  alias App.User
+
+  test "can signup", %{conn: conn} do
+    user = %{user: %{
+      login: "login",
+      name: "name",
+      password: "password",
+      password_confirmation: "password",
+      email: "email"
+    }}
+    conn = post(conn, signup_path(conn, :create), user)
+    assert conn.status == 302  # redirected to profile
+    assert length(Repo.all from u in User, where: u.login == ^user.user.login) == 1
   end
 end

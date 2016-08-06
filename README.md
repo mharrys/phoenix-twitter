@@ -1,3 +1,5 @@
+![phoenix-twitter](https://github.com/mharrys/phoenix-twitter/raw/master/scrot.png)
+
 # Phoenix-Twitter
 
 A small twitter clone created with Elixir and Phoenix Framework that has the

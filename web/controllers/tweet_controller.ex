@@ -6,13 +6,14 @@ defmodule App.TweetController do
   alias App.Tag
   alias App.Tagging
   alias App.Tweet
+  alias App.User
 
   plug App.LoginRequired when action in [:create, :delete]
   plug App.SetUser when action in [:create]
 
   def index(conn, _param) do
     query = Tweet |> order_by([t], [desc: t.inserted_at])
-    query = case get_session conn, :current_user do
+    query = case User.get_current_user conn do
       nil ->
         query
       current_user ->

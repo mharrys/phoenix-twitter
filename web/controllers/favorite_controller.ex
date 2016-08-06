@@ -4,6 +4,7 @@ defmodule App.FavoriteController do
   alias App.Favorite
   alias App.Retweet
   alias App.Tweet
+  alias App.User
 
   plug App.SetUser when action in [:index]
   plug App.LoginRequired when action in [:create, :delete]
@@ -14,7 +15,7 @@ defmodule App.FavoriteController do
     |> order_by([f], [desc: f.inserted_at])
     |> where([f], f.user_id == ^user_id)
     |> join(:left, [f], t in assoc(f, :tweet))
-    query = case get_session conn, :current_user do
+    query = case User.get_current_user conn do
       nil ->
         query
         |> select([f, t], t)

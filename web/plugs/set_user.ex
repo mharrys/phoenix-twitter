@@ -28,7 +28,7 @@ defmodule App.SetUser do
     rescue
       _ in ArgumentError -> 0
     end
-    current_user = get_session(conn, :current_user)
+    current_user = User.get_current_user conn
     query = User |> where([u], u.id == ^user_id)
     query = if current_user do
       query

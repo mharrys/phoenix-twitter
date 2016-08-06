@@ -4,13 +4,15 @@ defmodule App.RedirectAuthenticated do
   root, otherwise continue as normal.
   """
   import Phoenix.Controller, only: [redirect: 2]
-  import Plug.Conn, only: [get_session: 2, halt: 1]
+  import Plug.Conn, only: [halt: 1]
   import App.Router.Helpers, only: [user_path: 3]
+
+  alias App.User
 
   def init(default), do: default
 
   def call(conn, _default) do
-    case get_session(conn, :current_user) do
+    case User.get_current_user conn do
       nil ->
         conn
       current_user ->

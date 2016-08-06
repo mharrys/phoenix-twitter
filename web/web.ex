@@ -54,12 +54,7 @@ defmodule App.Web do
       import App.Gettext
 
       def current_user(conn) do
-        case conn.assigns[:current_user] do
-          nil ->
-            Plug.Conn.get_session(conn, :current_user)
-          current_user ->
-            current_user
-        end
+        App.User.get_current_user conn
       end
 
       def user_profile(conn) do

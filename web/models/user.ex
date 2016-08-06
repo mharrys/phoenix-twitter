@@ -1,6 +1,8 @@
 defmodule App.User do
   use App.Web, :model
 
+  import Plug.Conn
+
   schema "users" do
     field :login, :string
     field :password, :string, virtual: true
@@ -51,5 +53,28 @@ defmodule App.User do
   """
   def validate_password(password, hash) do
     Comeonin.Bcrypt.checkpw(password, hash)
+  end
+
+  @doc """
+  Get current user from connection or session (if present), nil otherwise.
+  """
+  def get_current_user(conn) do
+    case conn.assigns[:current_user] do
+      nil ->
+        Plug.Conn.get_session(conn, :current_user)
+      current_user ->
+        current_user
+    end
+  end
+
+  @doc """
+  Put user as current user to connection and session. The new connection is
+  returned.
+  """
+  def put_current_user(conn, user) do
+    current_user = %{id: user.id, login: user.login, name: user.name}
+    conn
+    |> assign(:current_user, current_user)
+    |> put_session(:current_user, current_user)
   end
 end

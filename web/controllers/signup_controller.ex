@@ -18,7 +18,7 @@ defmodule App.SignupController do
     case Repo.insert changeset do
       {:ok, user} ->
         conn
-        |> put_session(:current_user, %{id: user.id, login: user.login, name: user.name})
+        |> User.put_current_user(user)
         |> put_flash(:info, gettext "Successfully created user account")
         |> redirect(to: user_path(conn, :show, user))
       {:error, changeset} ->

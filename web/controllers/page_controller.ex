@@ -11,7 +11,7 @@ defmodule App.PageController do
 
   def index(conn, _params) do
     query = Tweet |> order_by([t], [desc: t.inserted_at]) |> limit([t], @num_tweets)
-    query = case get_session conn, :current_user do
+    query = case User.get_current_user conn do
       nil ->
         query
       current_user ->

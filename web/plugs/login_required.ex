@@ -5,10 +5,12 @@ defmodule App.LoginRequired do
   """
   use App.Web, :controller
 
+  alias App.User
+
   def init(default), do: default
 
   def call(conn, _default) do
-    case get_session(conn, :current_user) do
+    case User.get_current_user conn do
       nil ->
         conn
         |> put_flash(:info, "You must be logged in.")

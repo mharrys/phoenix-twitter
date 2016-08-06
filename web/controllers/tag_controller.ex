@@ -6,6 +6,7 @@ defmodule App.TagController do
   alias App.Tag
   alias App.Tagging
   alias App.Tweet
+  alias App.User
 
   def show(conn, %{"name" => name}) do
     query = Tag
@@ -13,7 +14,7 @@ defmodule App.TagController do
     |> join(:left, [tag], tagging in Tagging, tagging.tag_id == tag.id)
     |> join(:left, [_, tagging], tweet in Tweet, tweet.id == tagging.tweet_id)
     |> order_by([_, _, tweet], [desc: tweet.inserted_at])
-    query = case get_session conn, :current_user do
+    query = case User.get_current_user conn do
       nil ->
         query
         |> select([_, _, tweet], tweet)

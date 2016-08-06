@@ -44,5 +44,7 @@ defmodule App.Router do
     end
 
     get "/hashtag/:name", TagController, :show
+
+    get "/locale/:locale", LocaleController, :new
   end
 end

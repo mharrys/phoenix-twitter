@@ -94,7 +94,7 @@ msgstr ""
 msgid "Latest Users"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:36 web/templates/login/form.html.eex:3
+#: web/templates/layout/app.html.eex:45 web/templates/login/form.html.eex:3
 #: web/templates/login/form.html.eex:15 web/templates/signup/form.html.eex:3
 msgid "Login"
 msgstr ""
@@ -103,7 +103,7 @@ msgstr ""
 msgid "Login to your account"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:33
+#: web/templates/layout/app.html.eex:42
 msgid "Logout"
 msgstr ""
 
@@ -135,7 +135,7 @@ msgstr ""
 msgid "Oct"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:48
+#: web/templates/layout/app.html.eex:57
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
@@ -147,7 +147,7 @@ msgstr ""
 msgid "Password confirmation"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:31
+#: web/templates/layout/app.html.eex:40
 msgid "Profile"
 msgstr ""
 
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Sep"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:32 web/templates/user/edit.html.eex:4
+#: web/templates/layout/app.html.eex:41 web/templates/user/edit.html.eex:4
 msgid "Settings"
 msgstr ""
 
@@ -167,7 +167,7 @@ msgstr ""
 msgid "Settings updated successfully"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:35 web/templates/signup/form.html.eex:33
+#: web/templates/layout/app.html.eex:44 web/templates/signup/form.html.eex:33
 msgid "Signup"
 msgstr ""
 
@@ -175,7 +175,7 @@ msgstr ""
 msgid "Successfully created user account"
 msgstr ""
 
-#: web/controllers/tweet_controller.ex:60
+#: web/controllers/tweet_controller.ex:61
 msgid "Successfully deleted tweet"
 msgstr ""
 
@@ -183,7 +183,7 @@ msgstr ""
 msgid "Successfully logged in."
 msgstr ""
 
-#: web/controllers/tweet_controller.ex:38
+#: web/controllers/tweet_controller.ex:39
 msgid "Successfully posted new tweet"
 msgstr ""
 
@@ -191,21 +191,21 @@ msgstr ""
 msgid "Tweet"
 msgstr ""
 
-#: web/controllers/favorite_controller.ex:38
+#: web/controllers/favorite_controller.ex:39
 msgid "Tweet added to your favorites"
 msgstr ""
 
-#: web/controllers/favorite_controller.ex:55
+#: web/controllers/favorite_controller.ex:56
 msgid "Tweet removed from your favorites"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:29
+#: web/templates/layout/app.html.eex:38
 #: web/templates/shared/user_stats.html.eex:4
 #: web/templates/tweet/index.html.eex:3 web/templates/user/show.html.eex:7
 msgid "Tweets"
 msgstr ""
 
-#: web/controllers/favorite_controller.ex:42
+#: web/controllers/favorite_controller.ex:43
 msgid "Unable to favorite tweet"
 msgstr ""
 
@@ -225,7 +225,7 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:28 web/templates/user/index.html.eex:3
+#: web/templates/layout/app.html.eex:37 web/templates/user/index.html.eex:3
 msgid "Users"
 msgstr ""
 
@@ -251,4 +251,8 @@ msgstr ""
 
 #: web/controllers/user_controller.ex:36
 msgid "wrong password"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:29
+msgid "Language"
 msgstr ""

@@ -93,7 +93,7 @@ msgstr "Senaste Kvittret"
 msgid "Latest Users"
 msgstr "Senaste Användarna"
 
-#: web/templates/layout/app.html.eex:36 web/templates/login/form.html.eex:3
+#: web/templates/layout/app.html.eex:45 web/templates/login/form.html.eex:3
 #: web/templates/login/form.html.eex:15 web/templates/signup/form.html.eex:3
 msgid "Login"
 msgstr "Logga in"
@@ -102,7 +102,7 @@ msgstr "Logga in"
 msgid "Login to your account"
 msgstr "Logga in till ditt konto"
 
-#: web/templates/layout/app.html.eex:33
+#: web/templates/layout/app.html.eex:42
 msgid "Logout"
 msgstr "Logga ut"
 
@@ -134,7 +134,7 @@ msgstr "Nov"
 msgid "Oct"
 msgstr "Okt"
 
-#: web/templates/layout/app.html.eex:48
+#: web/templates/layout/app.html.eex:57
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr "Oj oj, något gick galet! Var god och kolla på felen här under."
 
@@ -146,7 +146,7 @@ msgstr "Lösenord"
 msgid "Password confirmation"
 msgstr "Bekräfta lösenord"
 
-#: web/templates/layout/app.html.eex:31
+#: web/templates/layout/app.html.eex:40
 msgid "Profile"
 msgstr "Profil"
 
@@ -158,7 +158,7 @@ msgstr "Profilbild"
 msgid "Sep"
 msgstr "Sep"
 
-#: web/templates/layout/app.html.eex:32 web/templates/user/edit.html.eex:4
+#: web/templates/layout/app.html.eex:41 web/templates/user/edit.html.eex:4
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -166,7 +166,7 @@ msgstr "Inställningar"
 msgid "Settings updated successfully"
 msgstr "Lyckades att uppdatera inställningarna"
 
-#: web/templates/layout/app.html.eex:35 web/templates/signup/form.html.eex:33
+#: web/templates/layout/app.html.eex:44 web/templates/signup/form.html.eex:33
 msgid "Signup"
 msgstr "Registrera"
 
@@ -174,7 +174,7 @@ msgstr "Registrera"
 msgid "Successfully created user account"
 msgstr "Lyckades att skapa användarkonto"
 
-#: web/controllers/tweet_controller.ex:60
+#: web/controllers/tweet_controller.ex:61
 msgid "Successfully deleted tweet"
 msgstr "Lyckades ta bort kvitter"
 
@@ -182,7 +182,7 @@ msgstr "Lyckades ta bort kvitter"
 msgid "Successfully logged in."
 msgstr "Lyckades logga in."
 
-#: web/controllers/tweet_controller.ex:38
+#: web/controllers/tweet_controller.ex:39
 msgid "Successfully posted new tweet"
 msgstr "Lyckades posta nytt kvitter"
 
@@ -190,21 +190,21 @@ msgstr "Lyckades posta nytt kvitter"
 msgid "Tweet"
 msgstr "Kvitter"
 
-#: web/controllers/favorite_controller.ex:38
+#: web/controllers/favorite_controller.ex:39
 msgid "Tweet added to your favorites"
 msgstr "Kvitter är tillagt till dina favoriter"
 
-#: web/controllers/favorite_controller.ex:55
+#: web/controllers/favorite_controller.ex:56
 msgid "Tweet removed from your favorites"
 msgstr "Kvitter borttaget från dina favoriter"
 
-#: web/templates/layout/app.html.eex:29
+#: web/templates/layout/app.html.eex:38
 #: web/templates/shared/user_stats.html.eex:4
 #: web/templates/tweet/index.html.eex:3 web/templates/user/show.html.eex:7
 msgid "Tweets"
 msgstr "Kvitter"
 
-#: web/controllers/favorite_controller.ex:42
+#: web/controllers/favorite_controller.ex:43
 msgid "Unable to favorite tweet"
 msgstr "Kan inte favorisera kvitter"
 
@@ -224,7 +224,7 @@ msgstr "Okänt användarnamn eller fel lösenord"
 msgid "Update"
 msgstr "Uppdatera"
 
-#: web/templates/layout/app.html.eex:28 web/templates/user/index.html.eex:3
+#: web/templates/layout/app.html.eex:37 web/templates/user/index.html.eex:3
 msgid "Users"
 msgstr "Användare"
 
@@ -251,3 +251,7 @@ msgstr "återkvittrade"
 #: web/controllers/user_controller.ex:36
 msgid "wrong password"
 msgstr "fel lösenord"
+
+#: web/templates/layout/app.html.eex:29
+msgid "Language"
+msgstr "Språk"
